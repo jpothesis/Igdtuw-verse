@@ -12,10 +12,9 @@ export const HeroSection = () => {
                         <span className="opacity-0 animate-fade-in"> Welcome to,</span>
                         <span className="text-primary opacity-0 animate-fade-in-delay-1">
                             {" "}
-                            IGDTUW
+                            IGDTUW_
                         </span>
                         <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2">
-                            {" "}
                             Verse
                         </span>
                     </h1>
