@@ -17,7 +17,6 @@ const generateTokens = (user) => {
 };
 
 // ================== REGISTER ==================
-// REGISTER
 router.post("/register", async (req, res) => {
   try {
     const { username, email, password, branch, semester, section } = req.body;
@@ -26,14 +25,11 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ error: "User already exists" });
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
     const newUser = new User({
       username,
       email,
@@ -41,6 +37,7 @@ router.post("/register", async (req, res) => {
       branch,
       semester,
       section,
+      role: "student", // default role
     });
 
     await newUser.save();
@@ -62,20 +59,26 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-    // Generate tokens
     const { accessToken, refreshToken } = generateTokens(user);
 
-    // Store refreshToken in HTTP-only cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false, // change to true in production (https)
+      secure: false, // set true in production
       sameSite: "strict",
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
     });
 
     res.json({
       accessToken,
-      user: { id: user._id, username: user.username, email: user.email },
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        branch: user.branch,
+        semester: user.semester,
+        section: user.section,
+        role: user.role, // include role in login response
+      },
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
