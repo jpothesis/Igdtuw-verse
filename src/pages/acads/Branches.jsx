@@ -1,6 +1,6 @@
 import React from "react";
+import Sidebar from "./Sidebar"; 
 import { FaRobot, FaCode, FaMicrochip, FaNetworkWired, FaLaptopCode, FaBrain, FaCogs } from "react-icons/fa";
-import { StarBackground } from "../components/StarBackground";
 
 const branches = [
   { name: "CSE AI", icon: <FaRobot size={40} />, color: "from-purple-500 to-indigo-500" },
@@ -14,11 +14,11 @@ const branches = [
 
 export default function Branches() {
   return (
-    <section className="relative min-h-screen bg-black text-white py-16 overflow-hidden">
-      {/* 🌠 Meteor + stars background */}
-      <StarBackground />
+    <div className="flex h-screen bg-black text-white">
+      {/* Sidebar from existing component */}
+      <Sidebar />
 
-      {/* Content above stars */}
+      {/* Main content */}
       <div className="relative z-10">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold">
@@ -41,6 +41,6 @@ export default function Branches() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

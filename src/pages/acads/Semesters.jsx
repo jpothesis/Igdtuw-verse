@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBookOpen, FaLaptopCode, FaFlask, FaProjectDiagram, FaBrain, FaRobot, FaGraduationCap, FaStar } from "react-icons/fa";
-import { StarBackground } from "../components/StarBackground"; // reuse your meteor background
+import Sidebar from "./Sidebar"; 
 
 const semesters = [
   { name: "Semester 1", icon: <FaBookOpen size={40} />, color: "from-purple-500 to-indigo-500" },
@@ -15,9 +15,9 @@ const semesters = [
 
 export default function Semesters() {
   return (
-    <section className="relative min-h-screen bg-black text-white py-16 overflow-hidden">
-      {/* 🌠 Meteor + stars background */}
-      <StarBackground />
+    <div className="flex h-screen bg-black text-white">
+      {/* Sidebar from existing component */}
+      <Sidebar />
 
       {/* Page content */}
       <div className="relative z-10">
@@ -42,6 +42,6 @@ export default function Semesters() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

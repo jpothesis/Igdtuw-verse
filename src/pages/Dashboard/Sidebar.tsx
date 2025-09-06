@@ -1,3 +1,4 @@
+import React from "react";
 import { Home, BookOpen, Users, FileText, Settings } from "lucide-react";
 
 type SidebarProps = {

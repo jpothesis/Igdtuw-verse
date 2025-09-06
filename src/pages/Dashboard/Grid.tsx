@@ -1,3 +1,4 @@
+import React from "react";
 import { useDashboard } from "../../context/DashboardContext";
 
 export const Grid = () => {
