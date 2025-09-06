@@ -10,19 +10,20 @@ import {
   LogOut,
   GraduationCap,
 } from "lucide-react";
+import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
 // Menu items for sidebar
 const menuItems = [
-  { name: "Dashboard", icon: <LayoutDashboard size={20} />, to: "/dashboard" },
-  { name: "Payment Info", icon: <CreditCard size={20} />, to: "/payment" },
-  { name: "Registration", icon: <Pencil size={20} />, to: "/registration" },
-  { name: "Courses", icon: <BookOpen size={20} />, to: "/courses" },
-  { name: "Drop Semester", icon: <XCircle size={20} />, to: "/drop-semester" },
-  { name: "Result", icon: <FileCheck size={20} />, to: "/result" },
-  { name: "Notice", icon: <MessageSquare size={20} />, to: "/notice" },
-  { name: "Schedule", icon: <Calendar size={20} />, to: "/schedule" },
+  { name: "Dashboard", icon: <LayoutDashboard size={20} />, to: "/Dashboard" },
+  { name: "Academics Hub", icon: <LayoutDashboard size={20} />, to: "/Academics Hub" },
+  { name: "Societies", icon: <CreditCard size={20} />, to: "/ Societies" },
+  { name: "Explore Hackathons", icon: <Pencil size={20} />, to: "/Explore Hackathons" },
+  { name: "CGPA Calculator", icon: <BookOpen size={20} />, to: "/CGPA Calculator" },
+  { name: "Career Ladder", icon: <XCircle size={20} />, to: "/Career Ladder" },
+  { name: "Comming soon", icon: <FileCheck size={20} />, to: "/Comming soon" },
+
 ];
 
 // Animation variants for menu items
@@ -50,8 +51,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       {/* Logo */}
       <div className="flex flex-col items-center py-8">
         <div className="bg-white/20 p-4 rounded-2xl shadow-lg">
-          <GraduationCap size={40} className="text-white" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-12 h-12 object-contain"
+          />
         </div>
+
       </div>
 
       {/* Menu */}
@@ -67,10 +73,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             <NavLink
               to={item.to}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 text-white ${
-                  isActive
-                    ? "bg-gradient-to-r from-purple-800 via-purple-500 to-purple-600 shadow-lg"
-                    : "hover:bg-gradient-to-r hover:from-purple-500 hover:via-purple-600 hover:to-purple-700 hover:shadow-md"
+                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 text-white ${isActive
+                  ? "bg-gradient-to-r from-purple-800 via-purple-500 to-purple-600 shadow-lg"
+                  : "hover:bg-gradient-to-r hover:from-purple-500 hover:via-purple-600 hover:to-purple-700 hover:shadow-md"
                 }`
               }
               onClick={() => setIsOpen(false)}

@@ -2,6 +2,9 @@ import { ExternalLink, Github } from "lucide-react";
 import "../styles/flipcard.css";
 import academicsImg from "../assets/projects/academics.png";
 import societyImg from "../assets/projects/societies.png";
+import hackathonImg from "../assets/projects/hackathon.png";
+import cgpaImg from "../assets/projects/cgpa.png";
+import soonImg from "../assets/projects/soon.png";
 
 
 // Project data
@@ -28,40 +31,40 @@ const projects = [
   },
   {
     id: 3,
-    title: "AI Mock Interviews",
+    title: " Explore Hackathons",
     description:
       "Virtual AI interviewer providing real-time feedback, suggestions, and confidence-building tips.",
-    image: "/projects/interview.png",
+    image: hackathonImg,
     tags: ["React", "OpenAI", "Express"],
     demoUrl: "#",
     githubUrl: "#",
   },
   {
     id: 4,
-    title: "Learning Path Recommender",
+    title: "CGPA Calculator",
     description:
       "AI-powered course recommendation engine tailored to your career goals and interests.",
-    image: "/projects/learning.png",
+    image: cgpaImg,
     tags: ["Python", "Flask", "Machine Learning"],
     demoUrl: "#",
     githubUrl: "#",
   },
   {
     id: 5,
-    title: "Job Tracker",
+    title: "Coming Soon",
     description:
       "Track saved jobs, application progress, and receive smart reminders during your job hunt.",
-    image: "/projects/jobtracker.png",
+    image: soonImg,
     tags: ["MongoDB", "Express", "React"],
     demoUrl: "#",
     githubUrl: "#",
   },
   {
     id: 6,
-    title: "Portfolio Website",
+    title: "Coming Soon",
     description:
       "Personal portfolio showcasing projects, skills, and interactive 3D elements.",
-    image: "/projects/portfolio.png",
+    image: soonImg,
     tags: ["React", "Three.js", "TailwindCSS"],
     demoUrl: "#",
     githubUrl: "#",
