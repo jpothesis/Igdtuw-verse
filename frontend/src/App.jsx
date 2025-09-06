@@ -1,16 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CgpaCalculatorPage from "./pages/CgpaCalculatorPage";
 import SocietiesPage from "./pages/SocietiesPage";  
+import Branches from "./pages/acads/Branches.jsx";
+import Semesters from "./pages/acads/Semesters";
+import HackathonsPage from "./pages/HackathonsPage";
+import SubjectsPage from "./pages/acads/Subjects"; // match the file name exactly
+ 
+
 // Pages
 import { Home } from "./pages/Home.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import Dashboard from "./pages/Dashboard/Dashboard.jsx"; // ✅ dashboard page
+import Dashboard from "./pages/Dashboard/Dashboard.jsx"; 
 
 // Components
 import { Toaster } from "@/components/ui/Toaster";
-import ProtectedRoute from "./components/ProtectedRoute.jsx"; // ✅ wrapper for auth check
+import ProtectedRoute from "./components/ProtectedRoute.jsx"; 
 
 function App() {
   return (
@@ -24,6 +30,15 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/cgpa-calculator" element={<CgpaCalculatorPage />} />
           <Route path="/societies" element={<SocietiesPage />} />
+          <Route path="/branches" element={<Branches />} />
+          <Route path="/branches/:branch/semesters" element={<Semesters />} />
+          <Route path="/hackathons" element={<HackathonsPage />} />
+<Route 
+  path="/branches/:branch/semesters/:semester/subjects" 
+  element={<SubjectsPage />} 
+/>
+
+
 
           {/* Protected dashboard */}
           <Route

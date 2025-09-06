@@ -17,14 +17,16 @@ import { motion } from "framer-motion";
 // Menu items for sidebar
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard size={20} />, to: "/Dashboard" },
-  { name: "Academics Hub", icon: <LayoutDashboard size={20} />, to: "/Academics Hub" },
+  { name: "Academics Hub", icon: <LayoutDashboard size={20} />, to: "/branches" },
+
   { name: "Societies", icon: <CreditCard size={20} />, to: "/societies" },
 
-  { name: "Explore Hackathons", icon: <Pencil size={20} />, to: "/Explore Hackathons" },
-  { name: "CGPA Calculator", icon: <BookOpen size={20} />, to: "/cgpa-calculator" },
+  { name: "Explore Hackathons", icon: <Pencil size={20} />, to: "/hackathons" },
 
+  { name: "CGPA Calculator", icon: <BookOpen size={20} />, to: "/cgpa-calculator" },
+  { name: "Syllabus", icon: <FileCheck size={20} />, to: "/Syllabus" },
   { name: "Career Ladder", icon: <XCircle size={20} />, to: "/Career Ladder" },
-  { name: "Comming soon", icon: <FileCheck size={20} />, to: "/Comming soon" },
+
 
 ];
 

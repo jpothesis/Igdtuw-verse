@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils"
 
 function Card({ className, ...props }) {
@@ -50,3 +51,24 @@ function CardFooter({ className, ...props }) {
 }
 
 export { Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent }
+
+import React from "react";
+
+// Card wrapper
+export function Card({ children, className = "", ...props }) {
+  return (
+    <div className={`rounded-2xl shadow-lg ${className}`} {...props}>
+      {children}
+    </div>
+  );
+}
+
+// Card content wrapper
+export function CardContent({ children, className = "", ...props }) {
+  return (
+    <div className={`p-6 flex flex-col items-center text-center ${className}`} {...props}>
+      {children}
+    </div>
+  );
+}
+
