@@ -63,3 +63,4 @@ const TopBar = ({ setSidebarOpen }: TopBarProps) => {
 };
 
 export default TopBar;
+

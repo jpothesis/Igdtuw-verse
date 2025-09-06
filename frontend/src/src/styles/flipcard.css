@@ -1,0 +1,70 @@
+/* Flip card container with perspective */
+.flip-card {
+  perspective: 1000px;
+  width: 100%;
+  height: 220px;
+}
+
+/* Inner wrapper that flips */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+/* Flip on hover */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg) scale(1.02);
+}
+
+/* Shared front & back styles */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  color: white;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Glow effect on hover */
+.flip-card:hover .flip-card-front,
+.flip-card:hover .flip-card-back {
+  box-shadow: 0 0 25px 8px rgba(168, 85, 247, 0.5);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+/* Text glow on front */
+.flip-card-front h3,
+.flip-card-front svg {
+  transition: filter 0.3s ease;
+}
+
+.flip-card:hover .flip-card-front h3,
+.flip-card:hover .flip-card-front svg {
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.8));
+}
+
+/* Front face */
+.flip-card-front {
+  z-index: 2;
+}
+
+/* Back face */
+.flip-card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
