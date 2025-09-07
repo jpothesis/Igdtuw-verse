@@ -14,10 +14,8 @@ import SubjectsPage from "./pages/acads/Subjects.jsx";
 import HackathonsPage from "./pages/HackathonsPage.jsx";
 
 // Components
-
 import { Toaster } from "@/components/ui/Toaster";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-
 
 function App() {
   return (
@@ -33,10 +31,17 @@ function App() {
           <Route path="/societies" element={<SocietiesPage />} />
           <Route path="/branches" element={<Branches />} />
           <Route path="/branches/:branch/semesters" element={<Semesters />} />
+
+          {/* Subjects – supports both nested and direct access */}
           <Route
             path="/branches/:branch/semesters/:semester/subjects"
             element={<SubjectsPage />}
           />
+          <Route
+            path="/subjects/:branch/:semester"
+            element={<SubjectsPage />}
+          />
+
           <Route path="/hackathons" element={<HackathonsPage />} />
 
           {/* Protected Routes */}
