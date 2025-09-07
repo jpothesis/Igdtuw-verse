@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 // Import routes
 const authRoutes = require("./routes/auth");
 const timetableRoutes = require("./routes/dashboard_routes/timetable");
-const materialRoutes = require("./routes/materials");
+const materialsRoutes = require("./materials");
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(cookieParser());
 // ================== ROUTES ==================
 app.use("/api/auth", authRoutes);
 app.use("/api/timetable", timetableRoutes);
-app.use("/api/materials", materialRoutes);
+app.use("/api/materials", materialsRoutes);
 
 // ================== DB CONNECTION ==================
 const connectDB = require("./config/db");
