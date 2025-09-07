@@ -42,19 +42,19 @@ export const AboutSection = () => {
           custom={1}
         >
           <h3 className="text-2xl font-semibold text-purple-300">
-            Passionate Web Developer & Tech Creator
+            We’re Avika, Jaanvi, and Aakanksha — a team of enthusiastic Web Developers & Tech Creators.
           </h3>
 
           <p className="text-gray-300 leading-relaxed">
-            With over 5 years of experience in web development, I specialize in
-            creating responsive, accessible, and performant web applications
-            using modern technologies.
+          We love building responsive, accessible, and high-performance web applications using the latest 
+          technologies. Working together, we enjoy turning ideas into real, user-friendly solutions that 
+          look good and work even better.
           </p>
 
           <p className="text-gray-300 leading-relaxed">
-            I'm passionate about creating elegant solutions to complex problems,
-            and I'm constantly learning new technologies and techniques to stay
-            at the forefront of the ever-evolving web landscape.
+          Our goal is to create digital experiences that make a difference. We believe in teamwork, 
+          creativity, and constant growth, and we’re proud to collaborate on projects that we’re 
+          passionate about.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -81,20 +81,21 @@ export const AboutSection = () => {
         >
           {[
             {
-              icon: <Code className="h-6 w-6 text-purple-400" />,
-              title: "Web Development",
-              desc: "Creating responsive websites and web applications with modern frameworks.",
+              icon: <User className="h-6 w-6 text-purple-400" />,
+              title: "Avika - Backend Developer",
+              desc: "Turning spaghetti code into smooth-running web adventures—watch the magic happen!",
             },
             {
               icon: <User className="h-6 w-6 text-purple-400" />,
-              title: "UI/UX Design",
-              desc: "Designing intuitive user interfaces and seamless user experiences.",
+              title: "Jaanvi - Frontend Developer",
+              desc: "Crafting web vibes that your eyes can’t resist!",
             },
             {
-              icon: <Briefcase className="h-6 w-6 text-purple-400" />,
-              title: "Project Management",
-              desc: "Leading projects from conception to completion with agile methodologies.",
-            },
+              icon: <User className="h-6 w-6 text-purple-400" />,
+              title: "Aakanksha - Content Guru",
+              desc: "Digging deep, researching, and adding all the awesome content you see here!"
+            }            
+
           ].map((item, i) => (
             <motion.div
               key={i}

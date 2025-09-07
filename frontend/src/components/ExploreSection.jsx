@@ -12,63 +12,68 @@ const projects = [
   {
     id: 1,
     title: "Academics Hub",
-    description: "Smart resume generator with AI-powered suggestions...",
+    description: "A centralized platform for students to access organized study materials including notes, textbooks, and previous year question papers, helping them prepare effectively for exams.",
     image: academicsImg,
-    tags: ["React", "TailwindCSS", "Node.js"],
+    tags: ["Study Materials", "Notes", "Books", "PYQs"],
+    demoUrl: "#",
+    githubUrl: "#",
+    
+  },
+
+  {
+    id: 2,
+    title: "Societies Hub",
+    description:
+      "Explore college societies, track activities, and analyze skill-building opportunities \n Credits: IGDTUW CITY",
+    image: societyImg,
+    tags: [ "College Societies", "Society Activities", "Skill Building"],
     demoUrl: "#",
     githubUrl: "#",
   },
 
   {
-    id: 2,
-    title: "Societies",
-    description:
-      "Interactive analytics dashboard that provides career insights, skill-gap analysis, and salary trends.",
-    image: societyImg,
-    tags: ["Next.js", "TypeScript", "D3.js"],
-    demoUrl: "#",
-    githubUrl: "#",
-  },
-  {
     id: 3,
-    title: " Explore Hackathons",
+    title: "Explore Hackathons",
     description:
-      "Virtual AI interviewer providing real-time feedback, suggestions, and confidence-building tips.",
+      "A platform to discover upcoming hackathons, view detailed event info, track deadlines, and find resources to help students participate and excel in hackathons.",
     image: hackathonImg,
-    tags: ["React", "OpenAI", "Express"],
+    tags: ["Hackathon Discovery", "Event Tracker", "Hackathon Resources"],
     demoUrl: "#",
     githubUrl: "#",
   },
+
   {
     id: 4,
     title: "CGPA Calculator",
     description:
-      "AI-powered course recommendation engine tailored to your career goals and interests.",
+      "A simple and efficient tool for students to calculate their semester-wise CGPA based on course credits and grades. Credits: IGDTUW CGPA Calculator",
     image: cgpaImg,
-    tags: ["Python", "Flask", "Machine Learning"],
+    tags: [ "Education Tool", "CGPA Calculation"],
     demoUrl: "#",
     githubUrl: "#",
   },
+
   {
     id: 5,
     title: "Coming Soon",
     description:
-      "Track saved jobs, application progress, and receive smart reminders during your job hunt.",
+      "Something awesome is brewing... Stay tuned for surprises that might just make your college life less painful!",
     image: soonImg,
-    tags: ["MongoDB", "Express", "React"],
+    tags: ["Web App", "Future Feature", "Productivity", "Work In Progress"],
     demoUrl: "#",
     githubUrl: "#",
   },
+  
   {
     id: 6,
     title: "Coming Soon",
     description:
-      "Personal portfolio showcasing projects, skills, and interactive 3D elements.",
+      "A mysterious project is in the works… Expect the unexpected. Prepare to be mildly impressed.",
     image: soonImg,
-    tags: ["React", "Three.js", "TailwindCSS"],
+    tags: ["Web App", "Future Feature", "Creative Project", "Work In Progress"],
     demoUrl: "#",
     githubUrl: "#",
-  },
+  }  
 ];
 
 // Flip card component
