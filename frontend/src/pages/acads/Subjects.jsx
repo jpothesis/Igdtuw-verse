@@ -67,11 +67,16 @@ export default function SubjectsPage() {
   min-height: 320px; /* ✅ Still keep a minimum height */
 }
 
+.flip-card {
+  perspective: 1000px;
+  width: 100%;
+  min-height: 360px; /* Slightly bigger base */
+}
+
 .flip-card-inner {
   position: relative;
   width: 100%;
-  min-height: 320px;
-  height: 100%;
+  min-height: 360px;
   transition: transform 0.8s ease;
   transform-style: preserve-3d;
 }
@@ -79,20 +84,24 @@ export default function SubjectsPage() {
 .flip-card-front,
 .flip-card-back {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: 320px;
-  height: auto; /* ✅ Expand if content is bigger */
-  overflow-y: auto; /* ✅ Scroll if too tall */
+  min-height: 360px;
   border-radius: 0.75rem;
   backdrop-filter: blur(12px);
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(168, 85, 247, 0.1)
+  );
   border: 1px solid rgba(139, 92, 246, 0.3);
   box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
   backface-visibility: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* ✅ don't center, start at top */
   padding: 1.5rem;
   color: white;
 }
@@ -101,6 +110,15 @@ export default function SubjectsPage() {
   transform: rotateY(180deg);
   z-index: 1;
 }
+
+.flip-card-back .resources-list {
+  flex: 1; /* ✅ take remaining space */
+  width: 100%;
+  overflow-y: auto; /* ✅ scroll only the list */
+  max-height: 220px; /* ✅ limit height */
+  padding-right: 0.5rem;
+}
+
 
         `}</style>
 

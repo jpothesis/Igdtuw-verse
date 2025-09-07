@@ -4,47 +4,83 @@ import { FileText, PenTool } from "lucide-react";
 const subjectsData = {
   cse: {
     sem1: [
-      { 
+      {
         name: "Applied Mathematics",
-        icon: <FileText size={32} />,
-        color: "from-blue-600 to-cyan-500",
-        description: "Calculus & Linear Algebra",
-        resources: { notes: "#", assignments: "#" },
+        icon: <PenTool size={32} />,
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-      { 
+      {
         name: "Applied Physics",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-            { 
-        name: "Programming with C",
+      {
+        name: "Basics of Electrical Engineering",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-            { 
-        name: "Web Application Development",
-        icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
-      },
-            { 
+      {
         name: "Communication Skills",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-            { 
-        name: "Basics of Electrical and Electronics Engineering",
+      {
+        name: "Web Application Development",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
+      },
+      {
+        name: "Programming with C",
+        icon: <PenTool size={32} />,
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
       // ... more subjects
 
@@ -97,47 +133,83 @@ const subjectsData = {
       // subjects for semester 2
     ],
 
-        sem3: [       { 
-        name: "Mathematics I",
-        icon: <FileText size={32} />,
-        color: "from-blue-600 to-cyan-500",
-        description: "Calculus & Linear Algebra",
-        resources: { notes: "#", assignments: "#" },
-      },
-      { 
-        name: "Physics",
+        sem3: [           {
+        name: "Descrete Structures",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-            { 
-        name: "Physics",
+      {
+        name: "Introduction to Internet of Things",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-            { 
-        name: "Physics",
+      {
+        name: "Indian Knowledge System",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-            { 
-        name: "Physics",
+      {
+        name: "Data Analysis of Algorithms",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
-            { 
-        name: "Physics",
+       {
+        name: "Operations Management",
         icon: <PenTool size={32} />,
-        color: "from-green-600 to-emerald-500",
-        description: "Mechanics & Waves",
-        resources: { notes: "#", assignments: "#" },
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
+      },
+      {
+        name: "Software Engineering",
+        icon: <PenTool size={32} />,
+        color: "from-blue-600 to-indigo-600",
+        description: "Foundations of calculus, algebra, and differential equations",
+        resources: {
+          notes: "https://drive.google.com/notes-link",
+          assignments: "https://drive.google.com/assignments-link",
+          pyq: "https://drive.google.com/pyq-link",
+          books: "https://drive.google.com/books-link",
+          playlist: "https://youtube.com/playlist-link",
+        },
       },
 
 
