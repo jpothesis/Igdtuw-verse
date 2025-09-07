@@ -11,64 +11,74 @@ export default function SubjectsPage() {
   const [subjects, setSubjects] = useState([]);
   const [materials, setMaterials] = useState({});
   const [loading, setLoading] = useState(true);
-  const [isOpen, setIsOpen] = useState(false); // <-- sidebar toggle
 
-  const branchKey = params.branch?.toUpperCase(); 
-  const semesterKey = params.semester?.toUpperCase();
+  // Sidebar state
+  const [isOpen, setIsOpen] = useState(true); 
 
+  // Normalize branch & semester
+  const availableBranches = Object.keys(subjectsMapping);
+  const normalizeForMatch = (str) => str?.toLowerCase().replace(/[-_]/g, "");
+  const branchKey = availableBranches.find(
+    (b) => normalizeForMatch(b) === normalizeForMatch(params.branch)
+  );
+  const semesterKey = "SEM" + params.semester.replace(/\D/g, ""); // → "SEM1"
+
+  // Resource labels & icons matching backend keys
   const resourceLabels = {
-    pdf: "PDF Document",
-    ppt: "Presentation",
-    video: "Video",
-    doc: "Document",
-    default: "Resource"
-  };  
+    books: "Books",
+    notes: "Notes",
+    pyqs: "Previous Year Questions",
+    assignments: "Assignments",
+  };
 
   const resourceIcons = {
-    pdf: "📄",
-    ppt: "📊",
-    video: "🎥",
-    doc: "📝",
-    default: "📁"
+    books: "📚",
+    notes: "📝",
+    pyqs: "📄",
+    assignments: "🗂️",
   };
 
   useEffect(() => {
-    console.log("🔍 Raw Params:", params);
-    console.log("✅ Normalized:", { branchKey, semesterKey });
-    console.log("📂 Available branches:", Object.keys(subjectsMapping));
+    console.log("Raw Params:", params);
+    console.log("Normalized:", { branchKey, semesterKey });
+    console.log("Available branches:", availableBranches);
 
     const semSubjects = subjectsMapping[branchKey]?.[semesterKey] || [];
-    console.log("📚 semSubjects:", semSubjects);
-
-    setSubjects(semSubjects);
+    console.log("semSubjects:", semSubjects);
 
     if (semSubjects.length === 0) {
       setLoading(false);
       return;
     }
 
-    // Fetch materials
+    // Initialize subjects with empty resources first
+    const initialSubjects = semSubjects.map((sub) => ({
+      name: sub,
+      resources: {},
+    }));
+    setSubjects(initialSubjects);
+
+    // Fetch materials from backend
     const fetchMaterials = async () => {
       try {
-        const token = localStorage.getItem("token"); // if auth needed
+        const token = localStorage.getItem("token");
         const res = await fetch("http://localhost:5000/api/materials/batch", {
           method: "POST",
-          headers: { 
+          headers: {
             "Content-Type": "application/json",
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
           },
           body: JSON.stringify({ subjects: semSubjects }),
         });
-
         const data = await res.json();
         console.log("🗂️ Materials from backend:", data);
 
-        const mapped = semSubjects.map((sub) => ({
+        const mappedSubjects = semSubjects.map((sub) => ({
           name: sub,
           resources: data[sub] || {},
         }));
 
-        setSubjects(mapped);
+        setSubjects(mappedSubjects);
         setMaterials(data);
         setLoading(false);
       } catch (err) {

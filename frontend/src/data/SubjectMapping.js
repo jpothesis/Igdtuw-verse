@@ -9,7 +9,7 @@ const subjectsMapping = {
         "Web Application Development",
       ],
     },
-    "CSE AI": {
+    CSE_AI: {
       SEM1: [
         "Probability and Statistics",
         "Environmental Science",
@@ -38,7 +38,7 @@ const subjectsMapping = {
         "Electronics Workshop",
       ],
     },
-    "ECE AI": {
+    ECE_AI: {
       SEM1: [
         "Applied Mathematics",
         "Fundamentals of Electrical Sciences",
