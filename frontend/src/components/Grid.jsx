@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
-import { useDashboard } from "../context/DashboardContext";
-import { Search } from "lucide-react";
-import { motion } from "framer-motion";
-import { getGreeting } from "../lib/getGreeting";
-import { StarBackground } from "../components/StarBackground"; 
-import bannerImage from "../assets/banner.png"; 
-import bannerLogo from "../assets/banner_logo.png";
+"use client"
+
+import { useEffect, useState } from "react"
+import { useDashboard } from "../context/DashboardContext"
+import { Search } from "lucide-react"
+import { motion } from "framer-motion"
+import { getGreeting } from "../lib/getGreeting"
+import StarBackground from "../components/StarBackground.jsx" // ✅ correct
+
+import bannerImage from "../assets/banner.png"
+import bannerLogo from "../assets/banner_logo.png"
+import { FaCalendarAlt, FaUniversity } from "react-icons/fa"
+import { Assignments, UpcomingDeadlines } from "../components/Assignments"
 
 // Animation variants
 const fadeUp = {
@@ -19,50 +24,49 @@ const fadeUp = {
       ease: [0.25, 0.8, 0.25, 1],
     },
   }),
-};
+}
 
 // Helper: pick a style for each user based on their username
 const getAvatarStyle = (username) => {
-  const styles = ["avataaars", "bottts", "micah", "thumbs", "pixel-art"];
-  const charSum = username
-    .split("")
-    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return styles[charSum % styles.length];
-};
+  const styles = ["avataaars", "bottts", "micah", "thumbs", "pixel-art"]
+  const charSum = username.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
+  return styles[charSum % styles.length]
+}
 
 const Grid = () => {
-  const { data } = useDashboard();
+  const { data } = useDashboard()
 
   // Fetch user from localStorage (after login/register)
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userName = user?.username || "there";
+  const user = JSON.parse(localStorage.getItem("user"))
+  const userName = user?.username || "there"
 
-  const [greeting, setGreeting] = useState(getGreeting());
+  const [greeting, setGreeting] = useState(getGreeting())
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
-  });
+  })
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setGreeting(getGreeting());
-    }, 60 * 1000); // update every minute
-    return () => clearInterval(interval);
-  }, []);
+      setGreeting(getGreeting())
+    }, 60 * 1000) // update every minute
+    return () => clearInterval(interval)
+  }, [])
 
-  if (!data) return <p>Loading...</p>;
+  if (!data) return <p>Loading...</p>
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden transition-all duration-300 flex-1">
+
       {/* Purple Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-purple-900 -z-10" />
 
       {/* Starry Background */}
       <StarBackground />
 
-      <div className="space-y-6 p-6 relative z-10">
+      <div className="space-y-6 p-4 custom-850:p-6 relative z-10">
         {/* 🔍 Search + Profile Row */}
         <motion.div
           className="flex items-center justify-between"
@@ -78,10 +82,7 @@ const Grid = () => {
               placeholder="Search"
               className="w-full bg-gray-300 text-black px-4 py-2 rounded-full outline-none focus:ring-2 focus:ring-purple-500"
             />
-            <Search
-              size={18}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
-            />
+            <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500" />
           </div>
 
           {/* Profile info */}
@@ -120,47 +121,49 @@ const Grid = () => {
             <h2 className="text-2xl font-bold text-white">
               {greeting}, {userName}!
             </h2>
-            <p className="text-sm text-white/80">
-              Always stay updated in your student portal
-            </p>
+            <p className="text-sm text-white/80">Always stay updated in your student portal</p>
           </div>
 
           {/* Right Side: Illustration */}
           <div className="w-28 h-28 flex-shrink-0 self-end relative z-10">
-            <img
-              src={bannerLogo}
-              alt="Banner Logo"
-              className="w-full h-full object-contain"
-            />
+            <img src={bannerLogo || "/placeholder.svg"} alt="Banner Logo" className="w-full h-full object-contain" />
           </div>
         </motion.div>
 
         {/* Buttons */}
         <div className="grid md:grid-cols-2 gap-4">
+          {/* View Timetable */}
           <motion.div
             custom={5}
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
+            className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex items-center justify-between"
           >
-            <p className="font-medium text-gray-800">View Timetable</p>
-            <a href="https://your-timetable-link.com" target="_blank" rel="noopener noreferrer">
+            <div className="flex items-center gap-3">
+              <FaCalendarAlt className="text-purple-700 w-8 h-8" />
+              <p className="font-medium text-gray-800">View Timetable</p>
+            </div>
+            <a href="https://www.igdtuw.ac.in/academics/time-tables" target="_blank" rel="noopener noreferrer">
               <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
                 Open
               </button>
             </a>
           </motion.div>
 
+          {/* College Website Login */}
           <motion.div
             custom={6}
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
+            className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex items-center justify-between"
           >
-            <p className="font-medium text-gray-800">College Website Login</p>
-            <a href="https://your-college-login.com" target="_blank" rel="noopener noreferrer">
+            <div className="flex items-center gap-3">
+              <FaUniversity className="text-purple-700 w-8 h-8" />
+              <p className="font-medium text-gray-800">College Website Login</p>
+            </div>
+            <a href="https://igdtuw.in/IGDTUW/login" target="_blank" rel="noopener noreferrer">
               <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
                 Login
               </button>
@@ -168,23 +171,15 @@ const Grid = () => {
           </motion.div>
         </div>
 
-        {/* Instructors + Daily Notice */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
             custom={10}
-            className="bg-white/80 p-6 rounded-xl shadow border"
+            className="bg-white/10 p-6 rounded-xl shadow border overflow-y-auto max-h-[400px]"
           >
-            <h3 className="font-bold mb-3 text-black">Course Instructors</h3>
-            <div className="flex gap-3">
-              {data.instructors?.map((img, i) => (
-                <div key={i} className="w-10 h-10 rounded-full overflow-hidden">
-                  <img src={img} alt="instructor" className="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
+            <Assignments />
           </motion.div>
 
           <motion.div
@@ -192,25 +187,14 @@ const Grid = () => {
             animate="visible"
             variants={fadeUp}
             custom={11}
-            className="bg-white/80 p-6 rounded-xl shadow border"
+            className="bg-white/10 p-6 rounded-xl shadow border"
           >
-            <h3 className="font-bold mb-3 text-black">Daily Notice</h3>
-            <div className="space-y-4">
-              {data.notices?.map((n, i) => (
-                <div key={i}>
-                  <p className="font-semibold">{n.title}</p>
-                  <p className="text-sm text-gray-600">{n.text}</p>
-                  <button className="text-purple-600 text-sm mt-1">
-                    See more
-                  </button>
-                </div>
-              ))}
-            </div>
+            <UpcomingDeadlines />
           </motion.div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Grid;
+export default Grid

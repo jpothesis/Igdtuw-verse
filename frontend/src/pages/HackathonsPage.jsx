@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StarBackground } from "../components/StarBackground";
+import StarBackground from "../components/StarBackground";
 import Sidebar from "../components/Sidebar";
 import HackathonCard from "../components/HackathonCard";
+
 
 const hackathons = [
   {
@@ -78,7 +79,11 @@ export default function HackathonsPage() {
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       {/* Main content */}
-      <div className={`flex-1 relative z-10 transition-all duration-300 overflow-auto ${isOpen ? "ml-64" : "ml-20"} p-6`}>
+      <div
+        className={`flex-1 relative z-10 transition-all duration-300 overflow-auto ${
+          isOpen ? "ml-64" : "ml-20"
+        } p-6`}
+      >
         {/* Star Background */}
         <StarBackground />
 
@@ -87,8 +92,8 @@ export default function HackathonsPage() {
             Explore <span className="text-purple-500">Hackathons</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto text-pretty">
-            Discover amazing hackathons, coding competitions, and innovation challenges from around the world. Join the
-            community and showcase your skills!
+            Discover amazing hackathons, coding competitions, and innovation challenges from around the world. Join
+            the community and showcase your skills!
           </p>
         </div>
 
@@ -106,7 +111,9 @@ export default function HackathonsPage() {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-gray-400 text-lg">Ready to code? Pick a platform and start your hackathon journey!</p>
+          <p className="text-gray-400 text-lg">
+            Ready to code? Pick a platform and start your hackathon journey!
+          </p>
         </div>
       </div>
     </div>

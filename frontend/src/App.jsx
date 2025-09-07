@@ -12,6 +12,10 @@ import Branches from "./pages/acads/Branches.jsx";
 import Semesters from "./pages/acads/Semesters.jsx";
 import SubjectsPage from "./pages/acads/Subjects.jsx";
 import HackathonsPage from "./pages/HackathonsPage.jsx";
+import ComingSoon from "./pages/comingSoon.jsx";
+
+
+
 
 // Components
 
@@ -38,6 +42,7 @@ function App() {
             element={<SubjectsPage />}
           />
           <Route path="/hackathons" element={<HackathonsPage />} />
+          <Route path="/career-ladder" element={<ComingSoon />} />
 
           {/* Protected Routes */}
           <Route

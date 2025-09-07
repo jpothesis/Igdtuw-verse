@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar"; 
-import { StarBackground } from "../../components/StarBackground";
+import StarBackground from "../../components/StarBackground";
 import { 
   FaBookOpen, FaLaptopCode, FaFlask, FaProjectDiagram, 
   FaBrain, FaRobot, FaGraduationCap, FaStar 

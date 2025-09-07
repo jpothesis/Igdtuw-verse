@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
-import { StarBackground } from "../../components/StarBackground";
+import StarBackground from "../../components/StarBackground";
 import {
   FileText,
   PenTool,
