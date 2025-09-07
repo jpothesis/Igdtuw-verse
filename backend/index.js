@@ -8,14 +8,14 @@ const cookieParser = require("cookie-parser");
 // Import routes
 const authRoutes = require("./routes/auth");
 const timetableRoutes = require("./routes/dashboard_routes/timetable");
-const materialsRoutes = require("./materials");
+const materialsRoutes = require("./routes/materials");
 
 const app = express();
 
 // ================== MIDDLEWARE ==================
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:3000", // frontend URL
+  origin: "http://localhost:5173", // frontend URL
   credentials: true
 }));
 app.use(cookieParser());

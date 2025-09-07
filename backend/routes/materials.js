@@ -2,7 +2,7 @@ const express = require("express");
 const Material = require("../models/Material");
 const router = express.Router();
 
-// Get resources by subject
+// ================== Get resources by single subject ==================
 router.get("/:subject", async (req, res) => {
   try {
     const material = await Material.findOne({ subject: req.params.subject });
@@ -13,7 +13,30 @@ router.get("/:subject", async (req, res) => {
   }
 });
 
-// Admin-only: Add new subject materials
+// ================== Batch fetch multiple subjects ==================
+router.post("/batch", async (req, res) => {
+  try {
+    const { subjects } = req.body; // array of subject names
+    if (!Array.isArray(subjects)) {
+      return res.status(400).json({ message: "Subjects must be an array" });
+    }
+
+    const materials = await Material.find({ subject: { $in: subjects } });
+
+    // Convert to an object for easier frontend mapping
+    const result = {};
+    subjects.forEach(sub => {
+      const mat = materials.find(m => m.subject === sub);
+      result[sub] = mat ? mat.resources : {}; // default empty object if not found
+    });
+
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ================== Admin-only: Add new subject materials ==================
 router.post("/", async (req, res) => {
   try {
     const { subject, resources } = req.body;
@@ -25,7 +48,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Admin-only: Update subject materials
+// ================== Admin-only: Update subject materials ==================
 router.put("/:subject", async (req, res) => {
   try {
     const material = await Material.findOneAndUpdate(
