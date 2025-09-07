@@ -14,8 +14,10 @@ import SubjectsPage from "./pages/acads/Subjects.jsx";
 import HackathonsPage from "./pages/HackathonsPage.jsx";
 
 // Components
+
 import { Toaster } from "@/components/ui/Toaster";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+
 
 function App() {
   return (

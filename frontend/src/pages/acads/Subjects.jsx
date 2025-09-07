@@ -12,7 +12,7 @@ import {
   Play,
   ExternalLink,
 } from "lucide-react";
-import subjectsData from "./SubjectsData"; // ✅ dataset
+import subjectsData from "./SubjectsDataCSE"; // ✅ dataset
 
 // ===================== RESOURCE ICONS & LABELS =====================
 const resourceIcons = {
