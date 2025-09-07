@@ -5,8 +5,8 @@ import { useDashboard } from "../context/DashboardContext"
 import { Search } from "lucide-react"
 import { motion } from "framer-motion"
 import { getGreeting } from "../lib/getGreeting"
-import StarBackground from "../components/StarBackground.jsx" // ✅ correct
-import { useNavigate } from "react-router-dom"  // ✅ added
+import StarBackground from "../components/StarBackground.jsx"
+import { useNavigate } from "react-router-dom"
 
 import bannerImage from "../assets/banner.png"
 import bannerLogo from "../assets/banner_logo.png"
@@ -36,9 +36,8 @@ const getAvatarStyle = (username) => {
 
 const Grid = () => {
   const { data } = useDashboard()
-  const navigate = useNavigate() // ✅ navigation hook
+  const navigate = useNavigate()
 
-  // Fetch user from localStorage (after login/register)
   const user = JSON.parse(localStorage.getItem("user"))
   const userName = user?.username || "there"
 
@@ -53,7 +52,7 @@ const Grid = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setGreeting(getGreeting())
-    }, 60 * 1000) // update every minute
+    }, 60 * 1000)
     return () => clearInterval(interval)
   }, [])
 
@@ -61,7 +60,6 @@ const Grid = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden transition-all duration-300 flex-1">
-
       {/* Purple Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-black to-purple-900 -z-10" />
 
@@ -114,7 +112,6 @@ const Grid = () => {
           className="relative rounded-xl p-8 flex items-center justify-between shadow-lg overflow-hidden bg-cover bg-center"
           style={{ backgroundImage: `url(${bannerImage})` }}
         >
-          {/* Overlay */}
           <div className="absolute inset-0 bg-black/40 rounded-xl -z-10" />
 
           {/* Left Side: Date + Greeting */}
@@ -186,14 +183,23 @@ const Grid = () => {
             <h3 className="text-white text-xl font-bold mb-2">Coming Soon 🚀</h3>
             <p className="text-purple-200 mb-4">Exciting features are on the way. Stay tuned!</p>
             <button
-              onClick={() => navigate("/coming-soon")}  // ✅ fixed navigation
+              onClick={() => navigate("/coming-soon")}
               className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition"
             >
               Explore
             </button>
+
+            <h3 className="font-bold mb-3 text-black">New Feature</h3>
+            <div className="flex gap-3">
+              {data.instructors?.map((img, i) => (
+                <div key={i}>
+                  <p className="font-semibold text-purple-600">Coming soon</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Right Box → Assignments + Deadlines (scrollable) */}
+          {/* Right Box → Assignments + Deadlines */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -201,6 +207,7 @@ const Grid = () => {
             custom={11}
             className="bg-white/10 p-6 rounded-xl shadow border overflow-y-auto max-h-[500px] space-y-8"
           >
+            <h3 className="font-bold mb-3 text-white">Assignment To-do List</h3>
             <Assignments />
             <UpcomingDeadlines />
           </motion.div>

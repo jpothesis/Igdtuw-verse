@@ -1,28 +1,85 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import Sidebar from "../../components/Sidebar"; 
 import StarBackground from "../../components/StarBackground";
-import { 
-  FaBookOpen, FaLaptopCode, FaFlask, FaProjectDiagram, 
-  FaBrain, FaRobot, FaGraduationCap, FaStar 
+
+
+
+import {
+  FaBookOpen,
+  FaLaptopCode,
+  FaFlask,
+  FaProjectDiagram,
+  FaBrain,
+  FaRobot,
+  FaGraduationCap,
+  FaStar,
+
 } from "react-icons/fa";
 
 const semesters = [
-  { name: "Semester 1", icon: <FaBookOpen size={32} />, color: "from-purple-600 to-indigo-600", description: "Foundational subjects & basics" },
-  { name: "Semester 2", icon: <FaLaptopCode size={32} />, color: "from-pink-600 to-red-500", description: "Programming & core concepts" },
-  { name: "Semester 3", icon: <FaFlask size={32} />, color: "from-blue-600 to-cyan-500", description: "Labs & practical experiments" },
-  { name: "Semester 4", icon: <FaProjectDiagram size={32} />, color: "from-green-600 to-emerald-500", description: "Projects & system design" },
-  { name: "Semester 5", icon: <FaBrain size={32} />, color: "from-orange-500 to-yellow-500", description: "Advanced concepts & AI basics" },
-  { name: "Semester 6", icon: <FaRobot size={32} />, color: "from-teal-500 to-sky-500", description: "Automation & robotics" },
-  { name: "Semester 7", icon: <FaGraduationCap size={32} />, color: "from-fuchsia-600 to-purple-700", description: "Specialization subjects" },
-  { name: "Semester 8", icon: <FaStar size={32} />, color: "from-indigo-500 to-blue-700", description: "Final projects & industry prep" },
+  {
+    name: "Semester 1",
+    icon: <FaBookOpen size={32} />,
+    color: "from-purple-600 to-indigo-600",
+    description: "Foundational subjects & basics",
+  },
+  {
+    name: "Semester 2",
+    icon: <FaLaptopCode size={32} />,
+    color: "from-pink-600 to-red-500",
+    description: "Programming & core concepts",
+  },
+  {
+    name: "Semester 3",
+    icon: <FaFlask size={32} />,
+    color: "from-blue-600 to-cyan-500",
+    description: "Labs & practical experiments",
+  },
+  {
+    name: "Semester 4",
+    icon: <FaProjectDiagram size={32} />,
+    color: "from-green-600 to-emerald-500",
+    description: "Projects & system design",
+  },
+  {
+    name: "Semester 5",
+    icon: <FaBrain size={32} />,
+    color: "from-orange-500 to-yellow-500",
+    description: "Advanced concepts & AI basics",
+  },
+  {
+    name: "Semester 6",
+    icon: <FaRobot size={32} />,
+    color: "from-teal-500 to-sky-500",
+    description: "Automation & robotics",
+  },
+  {
+    name: "Semester 7",
+    icon: <FaGraduationCap size={32} />,
+    color: "from-fuchsia-600 to-purple-700",
+    description: "Specialization subjects",
+  },
+  {
+    name: "Semester 8",
+    icon: <FaStar size={32} />,
+    color: "from-indigo-500 to-blue-700",
+    description: "Final projects & industry prep",
+  },
 ];
 
 export default function Semesters() {
   const { branch } = useParams();
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [isOpen, setIsOpen] = useState(true); // Sidebar state
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleNavigate = (index) => {
+    const semesterKey = `sem${index + 1}`;
+    // Use the new direct route style for consistency
+    navigate(`/subjects/${branch}/${semesterKey}`);
+  };
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white relative overflow-hidden">

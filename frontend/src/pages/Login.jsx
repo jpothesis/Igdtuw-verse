@@ -12,17 +12,18 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",  // ⚡ Important! Include cookies in request
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
       console.log("Login response:", data);
-
+  
       if (response.ok && data.accessToken) {
         localStorage.setItem("token", data.accessToken);
         navigate("/dashboard");
