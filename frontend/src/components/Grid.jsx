@@ -27,7 +27,7 @@ const fadeUp = {
   }),
 }
 
-// Helper: pick a style for each user based on their username
+// Helper: pick a style for avatar
 const getAvatarStyle = (username) => {
   const styles = ["avataaars", "bottts", "micah", "thumbs", "pixel-art"]
   const charSum = username.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0)
@@ -38,8 +38,7 @@ const Grid = () => {
   const { data } = useDashboard()
   const navigate = useNavigate()
 
-  const user = JSON.parse(localStorage.getItem("user"))
-  const userName = user?.username || "there"
+  const userName = "there" // Always fallback to "there"
 
   const [greeting, setGreeting] = useState(getGreeting())
   const today = new Date().toLocaleDateString("en-US", {
@@ -85,21 +84,13 @@ const Grid = () => {
             <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500" />
           </div>
 
-          {/* Profile info */}
+          {/* Only avatar, no background or text */}
           <div className="ml-6">
-            <div className="flex items-center gap-3 bg-gray-300/90 p-3 rounded-xl shadow-md">
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-500 shadow-lg hover:scale-105 transition-transform duration-300">
-                <img
-                  src={`https://api.dicebear.com/7.x/${getAvatarStyle(userName)}/svg?seed=${userName}`}
-                  alt="avatar"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-semibold text-black">{userName}</p>
-                <p className="text-xs text-black">{user?.branch || "Student"}</p>
-              </div>
-            </div>
+            <img
+              src={`https://api.dicebear.com/7.x/${getAvatarStyle(userName)}/svg?seed=${userName}`}
+              alt="avatar"
+              className="w-12 h-12 rounded-full border-2 border-purple-500 shadow-lg hover:scale-105 transition-transform duration-300"
+            />
           </div>
         </motion.div>
 
@@ -123,7 +114,7 @@ const Grid = () => {
             <p className="text-sm text-white/80">Always stay updated in your student portal</p>
           </div>
 
-          {/* Right Side: Illustration */}
+          {/* Right Side: Banner illustration */}
           <div className="w-28 h-28 flex-shrink-0 self-end relative z-10">
             <img src={bannerLogo || "/placeholder.svg"} alt="Banner Logo" className="w-full h-full object-contain" />
           </div>

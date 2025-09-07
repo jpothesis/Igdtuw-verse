@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import StarBackground from "../components/StarBackground.jsx";
-import API from "../api"; // <-- use the corrected API.js
+import API from "../api/api.js";
+
 
 export default function Login() {
   const navigate = useNavigate();
