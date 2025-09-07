@@ -6,6 +6,7 @@ import { Search } from "lucide-react"
 import { motion } from "framer-motion"
 import { getGreeting } from "../lib/getGreeting"
 import StarBackground from "../components/StarBackground.jsx" // ✅ correct
+import { useNavigate } from "react-router-dom"  // ✅ added
 
 import bannerImage from "../assets/banner.png"
 import bannerLogo from "../assets/banner_logo.png"
@@ -35,6 +36,7 @@ const getAvatarStyle = (username) => {
 
 const Grid = () => {
   const { data } = useDashboard()
+  const navigate = useNavigate() // ✅ navigation hook
 
   // Fetch user from localStorage (after login/register)
   const user = JSON.parse(localStorage.getItem("user"))
@@ -171,24 +173,35 @@ const Grid = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Grid: Coming Soon + Assignments */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+          {/* Left Box → Coming Soon */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
             custom={10}
-            className="bg-white/10 p-6 rounded-xl shadow border overflow-y-auto max-h-[400px]"
+            className="bg-white/10 p-6 rounded-xl shadow border flex flex-col justify-center items-center text-center"
           >
-            <Assignments />
+            <h3 className="text-white text-xl font-bold mb-2">Coming Soon 🚀</h3>
+            <p className="text-purple-200 mb-4">Exciting features are on the way. Stay tuned!</p>
+            <button
+              onClick={() => navigate("/coming-soon")}  // ✅ fixed navigation
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition"
+            >
+              Explore
+            </button>
           </motion.div>
 
+          {/* Right Box → Assignments + Deadlines (scrollable) */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
             custom={11}
-            className="bg-white/10 p-6 rounded-xl shadow border"
+            className="bg-white/10 p-6 rounded-xl shadow border overflow-y-auto max-h-[500px] space-y-8"
           >
+            <Assignments />
             <UpcomingDeadlines />
           </motion.div>
         </div>

@@ -43,6 +43,7 @@ function App() {
           />
           <Route path="/hackathons" element={<HackathonsPage />} />
           <Route path="/career-ladder" element={<ComingSoon />} />
+          <Route path="/coming-soon" element={<ComingSoon />} />
 
           {/* Protected Routes */}
           <Route
