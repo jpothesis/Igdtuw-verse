@@ -9,7 +9,7 @@ import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx"; // ✅ dashboard page
 
 // Components
-import { Toaster } from "@/components/ui/Toaster";
+import { Toaster } from "./components/ui/Toaster";
 import ProtectedRoute from "./components/ProtectedRoute.jsx"; // ✅ wrapper for auth check
 
 function App() {
