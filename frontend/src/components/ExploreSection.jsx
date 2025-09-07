@@ -1,3 +1,5 @@
+"use client";
+
 import { ExternalLink, Github } from "lucide-react";
 import "../styles/flipcard.css";
 import academicsImg from "../assets/projects/academics.png";
@@ -5,7 +7,6 @@ import societyImg from "../assets/projects/societies.png";
 import hackathonImg from "../assets/projects/hackathon.png";
 import cgpaImg from "../assets/projects/cgpa.png";
 import soonImg from "../assets/projects/soon.png";
-
 
 // Project data
 const projects = [
@@ -17,63 +18,52 @@ const projects = [
     tags: ["Study Materials", "Notes", "Books", "PYQs"],
     demoUrl: "#",
     githubUrl: "#",
-    
   },
-
   {
     id: 2,
     title: "Societies Hub",
-    description:
-      "Explore college societies, track activities, and analyze skill-building opportunities \n Credits: IGDTUW CITY",
+    description: "Explore college societies, track activities, and analyze skill-building opportunities. Credits: IGDTUW CITY",
     image: societyImg,
-    tags: [ "College Societies", "Society Activities", "Skill Building"],
+    tags: ["College Societies", "Society Activities", "Skill Building"],
     demoUrl: "#",
     githubUrl: "#",
   },
-
   {
     id: 3,
     title: "Explore Hackathons",
-    description:
-      "A platform to discover upcoming hackathons, view detailed event info, track deadlines, and find resources to help students participate and excel in hackathons.",
+    description: "A platform to discover upcoming hackathons, view detailed event info, track deadlines, and find resources to help students participate and excel in hackathons.",
     image: hackathonImg,
     tags: ["Hackathon Discovery", "Event Tracker", "Hackathon Resources"],
     demoUrl: "#",
     githubUrl: "#",
   },
-
   {
     id: 4,
     title: "CGPA Calculator",
-    description:
-      "A simple and efficient tool for students to calculate their semester-wise CGPA based on course credits and grades. Credits: IGDTUW CGPA Calculator",
+    description: "A simple and efficient tool for students to calculate their semester-wise CGPA based on course credits and grades. Credits: IGDTUW CGPA Calculator",
     image: cgpaImg,
-    tags: [ "Education Tool", "CGPA Calculation"],
+    tags: ["Education Tool", "CGPA Calculation"],
     demoUrl: "#",
     githubUrl: "#",
   },
-
   {
     id: 5,
     title: "Coming Soon",
-    description:
-      "Something awesome is brewing... Stay tuned for surprises that might just make your college life less painful!",
+    description: "Something awesome is brewing... Stay tuned for surprises that might just make your college life less painful!",
     image: soonImg,
     tags: ["Web App", "Future Feature", "Productivity", "Work In Progress"],
     demoUrl: "#",
     githubUrl: "#",
   },
-  
   {
     id: 6,
     title: "Coming Soon",
-    description:
-      "A mysterious project is in the works… Expect the unexpected. Prepare to be mildly impressed.",
+    description: "A mysterious project is in the works… Expect the unexpected. Prepare to be mildly impressed.",
     image: soonImg,
     tags: ["Web App", "Future Feature", "Creative Project", "Work In Progress"],
     demoUrl: "#",
     githubUrl: "#",
-  }  
+  },
 ];
 
 // Flip card component
@@ -128,10 +118,10 @@ const ProjectCard = ({ title, description, image, tags, demoUrl, githubUrl }) =>
   );
 };
 
-// Projects page
+// Projects Section
 const ProjectsSection = () => {
   return (
-    <div className="min-h-screen px-4 py-20 text-white">
+    <section id="explore" className="min-h-screen px-4 py-20 text-white">
       <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-16">
         Explore{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-violet-600">
@@ -144,7 +134,7 @@ const ProjectsSection = () => {
           <ProjectCard key={project.id} {...project} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

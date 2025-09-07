@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
-import logo from "../assets/logo.png" // <-- import your logo
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import logo from "../assets/logo.png"; // <-- your logo
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Explore", href: "#explore" },
     { name: "Contact Us", href: "#contact" },
-  ]
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-600 to-purple-800 shadow-lg">
@@ -73,7 +73,6 @@ const Navbar = () => {
             className="md:hidden bg-purple-700 border-t border-purple-500"
           >
             <div className="px-4 py-4 space-y-3 max-w-sm mx-auto">
-              {/* Mobile Navigation Links */}
               <div className="space-y-2">
                 {navItems.map((item) => (
                   <a
@@ -107,7 +106,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { User } from "lucide-react";
 import pic1 from "../assets/pic1.png";
 import pic2 from "../assets/pic2.png";
 import pic3 from "../assets/pic3.png";
@@ -25,12 +26,12 @@ export const AboutSection = () => {
     },
     {
       img: pic2,
-      name: "Avika Srivastava- Backend Developer",
+      name: "Avika Srivastava - Backend Developer",
       desc: "Turning spaghetti code into smooth-running web adventures—watch the magic happen!",
     },
     {
       img: pic3,
-      name: "Aakanksha Ekka- Content Guru",
+      name: "Aakanksha Ekka - Content Guru",
       desc: "Digging deep, researching, and adding all the awesome content you see here!",
     },
   ];
@@ -73,8 +74,7 @@ export const AboutSection = () => {
 
           <p className="text-gray-300 leading-relaxed">
             Our goal is to create digital experiences that make a difference. We believe in teamwork, 
-            creativity, and constant growth, and we’re proud to collaborate on projects that we’re 
-            passionate about.
+            creativity, and constant growth, and we’re proud to collaborate on projects that we’re passionate about.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
