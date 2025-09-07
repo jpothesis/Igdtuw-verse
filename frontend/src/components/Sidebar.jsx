@@ -5,32 +5,23 @@ import {
   BookOpen,
   XCircle,
   FileCheck,
-  MessageSquare,
-  Calendar,
   LogOut,
-  GraduationCap,
 } from "lucide-react";
 import logo from "../assets/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom"; // ✅ added useNavigate
 import { motion } from "framer-motion";
 
 // Menu items for sidebar
 const menuItems = [
   { name: "Dashboard", icon: <LayoutDashboard size={20} />, to: "/Dashboard" },
   { name: "Academics Hub", icon: <LayoutDashboard size={20} />, to: "/branches" },
-
   { name: "Societies", icon: <CreditCard size={20} />, to: "/societies" },
-
   { name: "Explore Hackathons", icon: <Pencil size={20} />, to: "/hackathons" },
-
   { name: "CGPA Calculator", icon: <BookOpen size={20} />, to: "/cgpa-calculator" },
   { name: "Syllabus", icon: <FileCheck size={20} />, to: "/Syllabus" },
   { name: "Career Ladder", icon: <XCircle size={20} />, to: "/Career Ladder" },
-
-
 ];
 
-// Animation variants for menu items
 const itemVariants = {
   hidden: { opacity: 0, x: -40 },
   visible: (i) => ({
@@ -45,6 +36,8 @@ const itemVariants = {
 };
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
+  const navigate = useNavigate(); // ✅ navigation hook
+
   return (
     <motion.aside
       initial={{ x: -300 }}
@@ -55,13 +48,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       {/* Logo */}
       <div className="flex flex-col items-center py-8">
         <div className="bg-white/20 p-4 rounded-2xl shadow-lg">
-          <img
-            src={logo}
-            alt="Logo"
-            className="w-12 h-12 object-contain"
-          />
+          <img src={logo} alt="Logo" className="w-12 h-12 object-contain" />
         </div>
-
       </div>
 
       {/* Menu */}
@@ -77,9 +65,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             <NavLink
               to={item.to}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 text-white ${isActive
-                  ? "bg-gradient-to-r from-purple-800 via-purple-500 to-purple-600 shadow-lg"
-                  : "hover:bg-gradient-to-r hover:from-purple-500 hover:via-purple-600 hover:to-purple-700 hover:shadow-md"
+                `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-300 text-white ${
+                  isActive
+                    ? "bg-gradient-to-r from-purple-800 via-purple-500 to-purple-600 shadow-lg"
+                    : "hover:bg-gradient-to-r hover:from-purple-500 hover:via-purple-600 hover:to-purple-700 hover:shadow-md"
                 }`
               }
               onClick={() => setIsOpen(false)}
@@ -100,8 +89,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       >
         <button
           onClick={() => {
-            localStorage.removeItem("isLoggedIn");
-            window.location.href = "/login";
+            localStorage.removeItem("isLoggedIn"); // ✅ clear login state
+            navigate("/"); // ✅ go to Home
           }}
           className="flex items-center gap-3 px-3 py-2 w-full rounded-lg bg-gradient-to-r from-purple-800 via-purple-600 to-purple-700 hover:shadow-lg hover:from-purple-400 hover:via-purple-500 hover:to-purple-600 transition-all duration-300"
         >
