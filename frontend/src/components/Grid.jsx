@@ -152,20 +152,25 @@ const Grid = () => {
             </a>
           </motion.div>
 
-          <motion.div
-            custom={6}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
-          >
-            <p className="font-medium text-gray-800">College Website Login</p>
-            <a href="https://your-college-login.com" target="_blank" rel="noopener noreferrer">
-              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
-                Login
-              </button>
-            </a>
-          </motion.div>
+            <motion.div
+              custom={6}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
+            >
+              <p className="font-medium text-gray-800">College Website Login</p>
+              <a
+                href="https://igdtuw.in/IGDTUW/login"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
+                  Login
+                </button>
+              </a>
+            </motion.div>
+          </div>
         </div>
 
         {/* Instructors + Daily Notice */}
@@ -177,11 +182,11 @@ const Grid = () => {
             custom={10}
             className="bg-white/80 p-6 rounded-xl shadow border"
           >
-            <h3 className="font-bold mb-3 text-black">Course Instructors</h3>
+            <h3 className="font-bold mb-3 text-black">New Feature</h3>
             <div className="flex gap-3">
               {data.instructors?.map((img, i) => (
-                <div key={i} className="w-10 h-10 rounded-full overflow-hidden">
-                  <img src={img} alt="instructor" className="w-full h-full object-cover" />
+                <div key={i}>
+                  <p className="font-semibold text-purple-600">Coming soon</p>
                 </div>
               ))}
             </div>
@@ -194,22 +199,17 @@ const Grid = () => {
             custom={11}
             className="bg-white/80 p-6 rounded-xl shadow border"
           >
-            <h3 className="font-bold mb-3 text-black">Daily Notice</h3>
+            <h3 className="font-bold mb-3 text-black">Assignment To-do List</h3>
             <div className="space-y-4">
               {data.notices?.map((n, i) => (
                 <div key={i}>
-                  <p className="font-semibold">{n.title}</p>
-                  <p className="text-sm text-gray-600">{n.text}</p>
-                  <button className="text-purple-600 text-sm mt-1">
-                    See more
-                  </button>
+                  <p className="font-semibold text-purple-600">Coming soon</p>
                 </div>
               ))}
             </div>
           </motion.div>
         </div>
       </div>
-    </div>
   );
 };
 
