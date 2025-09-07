@@ -12,7 +12,8 @@ import {
   Play,
   ExternalLink,
 } from "lucide-react";
-import subjectsData from "./SubjectsDataCSE"; // ✅ dataset
+import subjectsData from "./CSESubjectsData";
+
 
 // ===================== RESOURCE ICONS & LABELS =====================
 const resourceIcons = {
