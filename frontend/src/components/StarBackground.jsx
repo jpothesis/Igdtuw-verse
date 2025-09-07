@@ -67,7 +67,8 @@ const StarBackground = () => {
             height: meteor.size * 2 + "px",
             left: meteor.x + "%",
             top: meteor.y + "%",
-            animationDelay: meteor.delay + "s",
+            animationDelay: "0s",
+
             animationDuration: meteor.animationDuration + "s",
           }}
         />

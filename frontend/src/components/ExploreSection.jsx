@@ -6,7 +6,6 @@ import hackathonImg from "../assets/projects/hackathon.png";
 import cgpaImg from "../assets/projects/cgpa.png";
 import soonImg from "../assets/projects/soon.png";
 
-
 // Project data
 const projects = [
   {
@@ -18,7 +17,6 @@ const projects = [
     demoUrl: "#",
     githubUrl: "#",
   },
-
   {
     id: 2,
     title: "Societies",
@@ -31,7 +29,7 @@ const projects = [
   },
   {
     id: 3,
-    title: " Explore Hackathons",
+    title: "Explore Hackathons",
     description:
       "Virtual AI interviewer providing real-time feedback, suggestions, and confidence-building tips.",
     image: hackathonImg,
@@ -126,7 +124,7 @@ const ProjectCard = ({ title, description, image, tags, demoUrl, githubUrl }) =>
 // Projects page
 const ProjectsSection = () => {
   return (
-    <div className="min-h-screen px-4 py-20 text-white">
+    <div id="explore" className="min-h-screen px-4 py-20 text-white">
       <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-16">
         Explore{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-violet-600">

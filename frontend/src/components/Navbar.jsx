@@ -1,129 +1,113 @@
-// Navbar.jsx
-import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+"use client"
 
-const navItems = [
-  { name: "Home", to: "/" },
-  { name: "About", to: "/about" },
-  { name: "Explore", to: "/explore" },
-  { name: "Contact Us", to: "/contact us" },
-];
+import { useState } from "react"
+import { Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import logo from "../assets/logo.png" // <-- import your logo
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const navItems = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Explore", href: "#explore" },
+    { name: "Contact Us", href: "#contact" },
+  ]
 
   return (
-    <nav
-      className={cn(
-        "fixed w-full z-50 transition-all duration-300",
-        isScrolled
-          ? "py-3 bg-white/20 backdrop-blur-2xl shadow-md"
-          : "py-5 bg-white/10 backdrop-blur-2xl"
-      )}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 lg:px-20">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo" className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10" />
-          <span className="text-xl sm:text-2xl font-bold text-foreground">
-            IGDTUW_Verse
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-10 font-semibold tracking-wide uppercase">
-          {navItems.map((item, idx) => (
-            <Link
-              key={idx}
-              to={item.to}
-              className="text-foreground/80 hover:text-purple-600 transition-colors duration-300"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Desktop Buttons */}
-        <div className="hidden md:flex gap-3">
-          <Link
-            to="/login"
-            className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-5 py-2 rounded-full font-semibold hover:from-purple-400 hover:to-purple-600 transition"
-          >
-            Sign In
-          </Link>
-          <Link
-            to="/register"
-            className="bg-gradient-to-r from-purple-600 to-purple-800 py-2 px-4 rounded-full font-semibold text-white hover:from-purple-500 hover:to-purple-700 transition"
-          >
-            Create an Account
-          </Link>
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <button
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50 relative"
-          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
-        >
-          <div
-            className={cn(
-              "transition-transform duration-300",
-              isMenuOpen ? "rotate-90" : ""
-            )}
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-600 to-purple-800 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center flex-shrink-0">
+            <img src={logo} alt="IGDTUW Logo" className="h-10 w-10 mr-2" />
+            <h1 className="text-white text-xl font-bold">IGDTUW Verse</h1>
           </div>
-        </button>
 
-{/* Mobile Nav */}
-<div
-  className={cn(
-    "fixed inset-0 bg-purple-700/80 backdrop-blur-lg z-40 flex flex-col items-center justify-center transition-transform duration-500 md:hidden",
-    isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-  )}
->
-  <div className="flex flex-col space-y-6 text-xl w-4/5 max-w-sm items-center">
-    {navItems.map((item, idx) => (
-      <Link
-        key={idx}
-        to={item.to}
-        className="text-white hover:text-purple-300 transition-colors duration-300 w-full text-center"
-        onClick={() => setIsMenuOpen(false)}
-      >
-        {item.name}
-      </Link>
-    ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-white hover:text-purple-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          </div>
 
-    <Link
-      to="/login"
-      className="bg-gradient-to-r from-purple-500 to-purple-700 text-white py-2 px-6 rounded-full hover:from-purple-400 hover:to-purple-600 transition w-full text-center"
-      onClick={() => setIsMenuOpen(false)}
-    >
-      Sign In
-    </Link>
-    <Link
-      to="/register"
-      className="bg-gradient-to-r from-purple-600 to-purple-800 py-2 px-6 rounded-full font-semibold text-white hover:from-purple-500 hover:to-purple-700 transition w-full text-center"
-      onClick={() => setIsMenuOpen(false)}
-    >
-      Create an Account
-    </Link>
-  </div>
-</div>
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center space-x-3">
+            <button className="text-white hover:text-purple-200 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+              Sign In
+            </button>
+            <button className="bg-white text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+              Create Account
+            </button>
+          </div>
 
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-white hover:text-purple-200 p-2 rounded-md transition-colors duration-200"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
       </div>
-    </nav>
-  );
-};
 
-export default Navbar;
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-purple-700 border-t border-purple-500"
+          >
+            <div className="px-4 py-4 space-y-3 max-w-sm mx-auto">
+              {/* Mobile Navigation Links */}
+              <div className="space-y-2">
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-white hover:text-purple-200 hover:bg-purple-600 block px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 text-center"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+
+              {/* Mobile Auth Buttons */}
+              <div className="pt-4 space-y-3 border-t border-purple-500">
+                <button
+                  className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Sign In
+                </button>
+                <button
+                  className="w-full bg-white text-purple-600 hover:bg-purple-50 px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Create Account
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  )
+}
+
+export default Navbar

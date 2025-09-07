@@ -1,9 +1,10 @@
-import { useState } from "react"
-import Sidebar from "../../components/Sidebar"
-import StarBackground from "../../components/StarBackground.jsx"
+import { useState } from "react";
+import Sidebar from "../../components/Sidebar";
+import StarBackground from "../../components/StarBackground.jsx";
 
 const DashboardLayout = ({ children }) => {
-  const [sidebarWidth, setSidebarWidth] = useState(256) // default expanded
+  // Default sidebar width when expanded
+  const [sidebarWidth, setSidebarWidth] = useState(256); 
 
   return (
     <div className="flex min-h-screen">
@@ -21,11 +22,13 @@ const DashboardLayout = ({ children }) => {
           <StarBackground />
 
           {/* Page content */}
-          <main className="relative z-10 flex-1 p-4 md:p-6">{children}</main>
+          <main className="relative z-10 flex-1 p-4 md:p-6">
+            {children}
+          </main>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;

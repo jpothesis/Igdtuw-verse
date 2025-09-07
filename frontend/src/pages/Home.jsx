@@ -3,7 +3,8 @@ import Navbar from "../components/Navbar.jsx";
 import { ThemeToggle } from "../components/ThemeToggle";
 import StarBackground from "../components/StarBackground.jsx"; // ✅ correct
 
-import { HeroSection } from "../components/HeroSection";
+import HeroSection from "@/components/HeroSection";
+
 import { AboutSection } from "../components/AboutSection.jsx";
 import ExploreSection from "../components/ExploreSection.jsx";
 

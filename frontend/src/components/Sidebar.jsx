@@ -12,7 +12,7 @@ const menuItems = [
   { name: "Societies", icon: <CreditCard size={20} />, to: "/societies" },
   { name: "Explore Hackathons", icon: <Pencil size={20} />, to: "/hackathons" },
   { name: "CGPA Calculator", icon: <BookOpen size={20} />, to: "/cgpa-calculator" },
-  { name: "Syllabus", icon: <FileCheck size={20} />, to: "/Syllabus" },
+  { name: "Syllabus", icon: <FileCheck size={20} />, to: "/coming-soon" },
   { name: "Career Ladder", icon: <XCircle size={20} />, to: "/career-ladder" },
 
 ]
