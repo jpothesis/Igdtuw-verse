@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StarBackground from "../components/StarBackground.jsx"; // ✅ no curly braces
-
+import StarBackground from "../components/StarBackground.jsx";
+import API from "../api"; // <-- use the corrected API.js
 
 export default function Login() {
   const navigate = useNavigate();
@@ -12,23 +12,18 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",  // ⚡ Important! Include cookies in request
-        body: JSON.stringify({ email, password }),
-      });
-  
-      const data = await response.json();
-      console.log("Login response:", data);
-  
-      if (response.ok && data.accessToken) {
-        localStorage.setItem("token", data.accessToken);
+      // Use Axios API instance instead of fetch
+      const res = await API.post("/login", { email, password });
+
+      console.log("Login response:", res.data);
+
+      if (res.data.accessToken) {
+        localStorage.setItem("accessToken", res.data.accessToken);
         navigate("/dashboard");
       } else {
-        alert(data.message || "Login failed");
+        alert(res.data.message || "Login failed");
       }
     } catch (err) {
       console.error("Login error:", err);
