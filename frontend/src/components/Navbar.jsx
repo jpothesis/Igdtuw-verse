@@ -1,9 +1,9 @@
 "use client";
-
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/logo.png"; // <-- your logo
+import { Link } from "react-router-dom"; // <-- import Link
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,12 +42,18 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <button className="text-white hover:text-purple-200 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            <Link
+              to="/login"
+              className="text-white hover:text-purple-200 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
               Sign In
-            </button>
-            <button className="bg-white text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+            </Link>
+            <Link
+              to="/register"
+              className="bg-white text-purple-600 hover:bg-purple-50 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+            >
               Create Account
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -88,18 +94,20 @@ const Navbar = () => {
 
               {/* Mobile Auth Buttons */}
               <div className="pt-4 space-y-3 border-t border-purple-500">
-                <button
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200"
+                <Link
+                  to="/login"
+                  className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 block text-center"
                   onClick={() => setIsOpen(false)}
                 >
                   Sign In
-                </button>
-                <button
-                  className="w-full bg-white text-purple-600 hover:bg-purple-50 px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200"
+                </Link>
+                <Link
+                  to="/register"
+                  className="w-full bg-white text-purple-600 hover:bg-purple-50 px-4 py-3 rounded-lg text-base font-medium transition-colors duration-200 block text-center"
                   onClick={() => setIsOpen(false)}
                 >
                   Create Account
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>
