@@ -1,13 +1,12 @@
+// src/components/ProtectedRoute.jsx
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"; // ✅ or use your auth store
+export default function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("token"); // 👈 check saved token
 
-  if (!isLoggedIn) {
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 
   return children;
-};
-
-export default ProtectedRoute;
+}

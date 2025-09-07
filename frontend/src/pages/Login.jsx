@@ -1,16 +1,37 @@
-import { useState } from "react";
+"use client";
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StarBackground } from "../components/StarBackground";
 
-const Login = () => {
+export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    localStorage.setItem("isLoggedIn", "true");
-    navigate("/dashboard");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      console.log("Login response:", data);
+
+      if (response.ok && data.accessToken) {
+        localStorage.setItem("token", data.accessToken);
+        navigate("/dashboard");
+      } else {
+        alert(data.message || "Login failed");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("Something went wrong");
+    }
   };
 
   return (
@@ -29,6 +50,7 @@ const Login = () => {
         </h1>
 
         <form className="flex flex-col gap-4" onSubmit={handleLogin}>
+          {/* Email */}
           <input
             type="email"
             placeholder="Email"
@@ -39,6 +61,8 @@ const Login = () => {
                        focus:ring-2 focus:ring-purple-400"
             required
           />
+
+          {/* Password */}
           <input
             type="password"
             placeholder="Password"
@@ -50,6 +74,7 @@ const Login = () => {
             required
           />
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="mt-2 bg-gradient-to-r from-purple-500 to-purple-700 
@@ -63,6 +88,4 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

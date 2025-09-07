@@ -1,22 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CgpaCalculatorPage from "./pages/CgpaCalculatorPage";
-import SocietiesPage from "./pages/SocietiesPage";  
-import Branches from "./pages/acads/Branches.jsx";
-import Semesters from "./pages/acads/Semesters";
-import HackathonsPage from "./pages/HackathonsPage";
-import SubjectsPage from "./pages/acads/Subjects"; // match the file name exactly
- 
 
 // Pages
 import { Home } from "./pages/Home.jsx";
 import { NotFound } from "./pages/NotFound.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import Dashboard from "./pages/Dashboard/Dashboard.jsx"; 
+import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import CgpaCalculatorPage from "./pages/CgpaCalculatorPage.jsx";
+import SocietiesPage from "./pages/SocietiesPage.jsx";
+import Branches from "./pages/acads/Branches.jsx";
+import Semesters from "./pages/acads/Semesters.jsx";
+import SubjectsPage from "./pages/acads/Subjects.jsx";
+import HackathonsPage from "./pages/HackathonsPage.jsx";
 
 // Components
 import { Toaster } from "@/components/ui/Toaster";
-import ProtectedRoute from "./components/ProtectedRoute.jsx"; 
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
       <Toaster />
       <BrowserRouter>
         <Routes>
-          {/* Public routes */}
+          {/* Public Routes */}
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -32,15 +31,13 @@ function App() {
           <Route path="/societies" element={<SocietiesPage />} />
           <Route path="/branches" element={<Branches />} />
           <Route path="/branches/:branch/semesters" element={<Semesters />} />
+          <Route
+            path="/branches/:branch/semesters/:semester/subjects"
+            element={<SubjectsPage />}
+          />
           <Route path="/hackathons" element={<HackathonsPage />} />
-<Route 
-  path="/branches/:branch/semesters/:semester/subjects" 
-  element={<SubjectsPage />} 
-/>
 
-
-
-          {/* Protected dashboard */}
+          {/* Protected Routes */}
           <Route
             path="/dashboard"
             element={
@@ -50,7 +47,7 @@ function App() {
             }
           />
 
-          {/* 404 fallback */}
+          {/* 404 Not Found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

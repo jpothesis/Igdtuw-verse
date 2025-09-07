@@ -3,13 +3,9 @@ import { useDashboard } from "../context/DashboardContext";
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { getGreeting } from "../lib/getGreeting";
-import useAuthStore from "../store/auth"; // ✅ get user info
-import { StarBackground } from "../components/StarBackground"; // Starry background
-import bannerImage from "../assets/banner.png"; // Banner image
+import { StarBackground } from "../components/StarBackground"; 
+import bannerImage from "../assets/banner.png"; 
 import bannerLogo from "../assets/banner_logo.png";
-import igdtuwLogo from "../assets/igdtuw.png";
-
-
 
 // Animation variants
 const fadeUp = {
@@ -25,10 +21,21 @@ const fadeUp = {
   }),
 };
 
+// Helper: pick a style for each user based on their username
+const getAvatarStyle = (username) => {
+  const styles = ["avataaars", "bottts", "micah", "thumbs", "pixel-art"];
+  const charSum = username
+    .split("")
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return styles[charSum % styles.length];
+};
+
 const Grid = () => {
   const { data } = useDashboard();
-  const { user } = useAuthStore(); // ✅ logged-in user
-  const userName = user?.name || "there";
+
+  // Fetch user from localStorage (after login/register)
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userName = user?.username || "there";
 
   const [greeting, setGreeting] = useState(getGreeting());
   const today = new Date().toLocaleDateString("en-US", {
@@ -80,16 +87,16 @@ const Grid = () => {
           {/* Profile info */}
           <div className="ml-6">
             <div className="flex items-center gap-3 bg-gray-300/90 p-3 rounded-xl shadow-md">
-              <div className="w-10 h-10 rounded-full overflow-hidden">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-purple-500 shadow-lg hover:scale-105 transition-transform duration-300">
                 <img
-                  src="https://i.pravatar.cc/100?img=32"
-                  alt="profile"
+                  src={`https://api.dicebear.com/7.x/${getAvatarStyle(userName)}/svg?seed=${userName}`}
+                  alt="avatar"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="text-right">
                 <p className="text-sm font-semibold text-black">{userName}</p>
-                <p className="text-xs text-black">3rd year</p>
+                <p className="text-xs text-black">{user?.branch || "Student"}</p>
               </div>
             </div>
           </div>
@@ -104,7 +111,7 @@ const Grid = () => {
           className="relative rounded-xl p-8 flex items-center justify-between shadow-lg overflow-hidden bg-cover bg-center"
           style={{ backgroundImage: `url(${bannerImage})` }}
         >
-          {/* Overlay to keep text readable */}
+          {/* Overlay */}
           <div className="absolute inset-0 bg-black/40 rounded-xl -z-10" />
 
           {/* Left Side: Date + Greeting */}
@@ -129,46 +136,36 @@ const Grid = () => {
         </motion.div>
 
         {/* Buttons */}
-        <div>
-          <div className="grid md:grid-cols-2 gap-4">
-            <motion.div
-              custom={5}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
-            >
-              <p className="font-medium text-gray-800">View Timetable</p>
-              <a
-                href="https://your-timetable-link.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
-                  Open
-                </button>
-              </a>
-            </motion.div>
+        <div className="grid md:grid-cols-2 gap-4">
+          <motion.div
+            custom={5}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
+          >
+            <p className="font-medium text-gray-800">View Timetable</p>
+            <a href="https://your-timetable-link.com" target="_blank" rel="noopener noreferrer">
+              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
+                Open
+              </button>
+            </a>
+          </motion.div>
 
-            <motion.div
-              custom={6}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
-            >
-              <p className="font-medium text-gray-800">College Website Login</p>
-              <a
-                href="https://your-college-login.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
-                  Login
-                </button>
-              </a>
-            </motion.div>
-          </div>
+          <motion.div
+            custom={6}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="bg-gradient-to-br from-purple-100/80 to-purple-200/80 p-6 rounded-xl flex justify-between items-center"
+          >
+            <p className="font-medium text-gray-800">College Website Login</p>
+            <a href="https://your-college-login.com" target="_blank" rel="noopener noreferrer">
+              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition">
+                Login
+              </button>
+            </a>
+          </motion.div>
         </div>
 
         {/* Instructors + Daily Notice */}
@@ -184,11 +181,7 @@ const Grid = () => {
             <div className="flex gap-3">
               {data.instructors?.map((img, i) => (
                 <div key={i} className="w-10 h-10 rounded-full overflow-hidden">
-                  <img
-                    src={img}
-                    alt="instructor"
-                    className="w-full h-full object-cover"
-                  />
+                  <img src={img} alt="instructor" className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
