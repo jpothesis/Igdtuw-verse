@@ -1,6 +1,6 @@
 const express = require("express");
-const Timetable = require("../models/dashboard/Timetable");
-const adminOnly = require("../middleware/adminOnly");
+const Timetable = require("../../models/dashboard/Timetable.js");
+const adminOnly = require("../../middleware/adminOnly");
 
 const router = express.Router();
 
