@@ -17,7 +17,7 @@ const subjectsData = {
         },
       },
       {
-        name: "Programming in C",
+        name: "Programming with Python",
         icon: <PenTool size={32} />,
         color: "from-green-600 to-emerald-500",
         description: "Introduction to programming with C",
@@ -34,7 +34,7 @@ const subjectsData = {
 
     sem2: [
       {
-        name: "Data Structures",
+        name: "Web Application Development",
         icon: <PenTool size={32} />,
         color: "from-purple-600 to-pink-500",
         description: "Linear and non-linear data structures",
@@ -47,7 +47,7 @@ const subjectsData = {
         },
       },
       {
-        name: "Discrete Mathematics",
+        name: "Communication Skills",
         icon: <FileText size={32} />,
         color: "from-cyan-600 to-blue-500",
         description: "Logic, sets, relations, combinatorics, graphs",
@@ -59,7 +59,19 @@ const subjectsData = {
           playlist: "#",
         },
       },
-      // ... other semester 2 subjects
+      {
+        name: "Applied Physics",
+        icon: <FileText size={32} />,
+        color: "from-cyan-600 to-blue-500",
+        description: "Logic, sets, relations, combinatorics, graphs",
+        resources: {
+          notes: "#",
+          assignments: "#",
+          pyq: "#",
+          books: "#",
+          playlist: "#",
+        },
+      },
     ],
 
     sem3: [

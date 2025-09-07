@@ -4,10 +4,10 @@ const subjectsData = {
   cse_ai: {
     sem1: [
       {
-        name: "Environmental Science",
+        name: "Applied Mathematics",
         icon: <PenTool size={32} />, // or FileText, BookOpen, etc.
         color: "from-blue-600 to-indigo-600",
-        description: "EVS",
+        description: "M",
         resources: {
           notes: "#",       // replace with Google Drive link
           assignments: "#",
@@ -17,7 +17,7 @@ const subjectsData = {
         },
       },
       {
-        name: "Probability and Statistics",
+        name: "Fundamentals of Eletrical Sciences",
         icon: <PenTool size={32} />,
         color: "from-green-600 to-emerald-500",
         description: "PS",
@@ -30,7 +30,7 @@ const subjectsData = {
         },
       },
       {
-        name: "Communication Skills",
+        name: "Signals and Systems",
         icon: <PenTool size={32} />,
         color: "from-green-600 to-emerald-500",
         description: "CS",
@@ -43,7 +43,7 @@ const subjectsData = {
         },
       },
       {
-        name: "Programming with Python",
+        name: "Electronics Workshop",
         icon: <PenTool size={32} />,
         color: "from-green-600 to-emerald-500",
         description: "Introduction to programming with Python",
@@ -56,7 +56,7 @@ const subjectsData = {
         },
       },
       {
-        name: "IT Workshop",
+        name: "Communication skills",
         icon: <PenTool size={32} />,
         color: "from-green-600 to-emerald-500",
         description: "IT ",
@@ -69,7 +69,7 @@ const subjectsData = {
         },
       },
       {
-        name: "Programming in C",
+        name: "",
         icon: <PenTool size={32} />,
         color: "from-green-600 to-emerald-500",
         description: "Introduction to programming with C",
