@@ -1,5 +1,7 @@
-import { Briefcase, Code, User } from "lucide-react";
 import { motion } from "framer-motion";
+import pic1 from "../assets/pic1.png";
+import pic2 from "../assets/pic2.png";
+import pic3 from "../assets/pic3.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -15,6 +17,24 @@ const fadeUp = {
 };
 
 export const AboutSection = () => {
+  const team = [
+    {
+      img: pic1,
+      name: "Jaanvi Choudhary - Frontend Developer",
+      desc: "Crafting web vibes that your eyes can’t resist!",
+    },
+    {
+      img: pic2,
+      name: "Avika Srivastava- Backend Developer",
+      desc: "Turning spaghetti code into smooth-running web adventures—watch the magic happen!",
+    },
+    {
+      img: pic3,
+      name: "Aakanksha Ekka- Content Guru",
+      desc: "Digging deep, researching, and adding all the awesome content you see here!",
+    },
+  ];
+
   return (
     <section id="about" className="relative py-24 px-4 md:px-20">
       <motion.h2
@@ -70,7 +90,7 @@ export const AboutSection = () => {
           </div>
         </motion.div>
 
-        {/* Right side (skills/cards) */}
+        {/* Right side (profiles/cards) */}
         <motion.div
           className="grid grid-cols-1 gap-6"
           variants={fadeUp}
@@ -79,42 +99,24 @@ export const AboutSection = () => {
           viewport={{ once: true, amount: 0.4 }}
           custom={2}
         >
-          {[
-            {
-              icon: <User className="h-6 w-6 text-purple-400" />,
-              title: "Avika - Backend Developer",
-              desc: "Turning spaghetti code into smooth-running web adventures—watch the magic happen!",
-            },
-            {
-              icon: <User className="h-6 w-6 text-purple-400" />,
-              title: "Jaanvi - Frontend Developer",
-              desc: "Crafting web vibes that your eyes can’t resist!",
-            },
-            {
-              icon: <User className="h-6 w-6 text-purple-400" />,
-              title: "Aakanksha - Content Guru",
-              desc: "Digging deep, researching, and adding all the awesome content you see here!"
-            }            
-          ].map((item, i) => (
+          {team.map((member, i) => (
             <motion.div
               key={i}
-              className="p-6 rounded-[24px] bg-white/5 backdrop-blur-xl border border-purple-500/20 shadow-md shadow-purple-500/20 hover:shadow-purple-500/40 transition card-hover"
+              className="p-6 rounded-[24px] bg-white/5 backdrop-blur-xl border border-purple-500/20 shadow-md shadow-purple-500/20 hover:shadow-purple-500/40 transition card-hover flex items-center gap-4"
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               custom={i + 3}
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-purple-500/10">
-                  {item.icon}
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg text-purple-200">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-300">{item.desc}</p>
-                </div>
+              <img
+                src={member.img}
+                alt={member.name}
+                className="w-20 h-20 rounded-full object-cover border-2 border-purple-400 flex-shrink-0"
+              />
+              <div>
+                <h4 className="font-semibold text-lg text-purple-200">{member.name}</h4>
+                <p className="text-gray-300 mt-1">{member.desc}</p>
               </div>
             </motion.div>
           ))}
