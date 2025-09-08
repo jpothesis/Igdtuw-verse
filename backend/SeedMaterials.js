@@ -54,7 +54,7 @@ const seedData = [
     subject: "Communication Skills",
     resources: {
       books: "https://drive.google.com/drive/folders/1b9QM9uNg2D25eewEAwiOoInmqrsO-Mf5?usp=drive_link",
-      notes: "https://drive.google.com/drive/folders/1OrSg1tlCTrDa9wpCZSEj6OUnBThEZRjE?usp=drive_link",
+      notes: "https://drive.google.com/drive/u/3/folders/11AUdoaQZPemMjGj31q2YfFzM5xvbWDYV",
       pyqs: "https://drive.google.com/drive/folders/1LHxHoVmnwRHrlrE92_Y7H2TxfaJRVA9m?usp=drive_link",
       assignments: "https://drive.google.com/drive/folders/1R7vzVOjXf0Lpq4Km2pDT-m2kz4Vr6XDA?usp=drive_link"
     }
