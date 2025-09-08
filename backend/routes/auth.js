@@ -10,9 +10,11 @@ const generateTokens = (user) => {
   const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     expiresIn: "15m",
   });
+
   const refreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET, {
     expiresIn: "30d",
   });
+
   return { accessToken, refreshToken };
 };
 
@@ -44,9 +46,10 @@ router.post("/register", async (req, res) => {
 
     await newUser.save();
 
-    res.status(201).json({ success: true, message: "User registered successfully!" });
+    return res.status(201).json({ success: true, message: "User registered successfully!" });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    console.error("🔥 REGISTER ERROR:", err);  // Detailed error log
+    return res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
@@ -55,23 +58,30 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Email and password are required" });
+    }
+
     const user = await User.findOne({ email });
-    if (!user) return res.json({ success: false, message: "User not found" });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.json({ success: false, message: "Invalid credentials" });
+    if (!isMatch) {
+      return res.status(400).json({ success: false, message: "Invalid credentials" });
+    }
 
     const { accessToken, refreshToken } = generateTokens(user);
 
-    // Set refresh token in httpOnly cookie
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false, // ❌ set true in production with HTTPS
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
       sameSite: "strict",
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+      maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 
-    res.json({
+    return res.json({
       success: true,
       accessToken,
       user: {
@@ -85,42 +95,66 @@ router.post("/login", async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    console.error("🔥 LOGIN ERROR:", err);
+    return res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
 // ================== REFRESH TOKEN ==================
 router.post("/refresh", (req, res) => {
-  const token = req.cookies.refreshToken;
-  if (!token) return res.status(401).json({ success: false, message: "No refresh token" });
+  try {
+    const token = req.cookies.refreshToken;
+    if (!token) {
+      return res.status(401).json({ success: false, message: "No refresh token provided" });
+    }
 
-  jwt.verify(token, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
-    if (err) return res.status(403).json({ success: false, message: "Invalid refresh token" });
+    jwt.verify(token, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ success: false, message: "Invalid refresh token" });
+      }
 
-    const accessToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, { expiresIn: "15m" });
-    res.json({ success: true, accessToken });
-  });
+      const accessToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, {
+        expiresIn: "15m",
+      });
+
+      return res.json({ success: true, accessToken });
+    });
+  } catch (err) {
+    console.error("🔥 REFRESH TOKEN ERROR:", err);
+    return res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 });
 
 // ================== LOGOUT ==================
 router.post("/logout", (req, res) => {
-  res.clearCookie("refreshToken");
-  res.json({ success: true, message: "Logged out successfully" });
+  try {
+    res.clearCookie("refreshToken");
+    return res.json({ success: true, message: "Logged out successfully" });
+  } catch (err) {
+    console.error("🔥 LOGOUT ERROR:", err);
+    return res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
 });
 
-// ================== PROTECTED ROUTE ==================
+// ================== PROTECTED ROUTE - GET USER INFO ==================
 router.get("/me", async (req, res) => {
-  const token = req.header("Authorization")?.split(" ")[1];
-  if (!token) return res.status(401).json({ success: false, message: "No token provided" });
-
   try {
+    const token = req.header("Authorization")?.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ success: false, message: "No token provided" });
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id).select("-password");
-    if (!user) return res.status(404).json({ success: false, message: "User not found" });
 
-    res.json({ success: true, user });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    return res.json({ success: true, user });
   } catch (err) {
-    res.status(401).json({ success: false, message: "Invalid token" });
+    console.error("🔥 GET USER INFO ERROR:", err);
+    return res.status(401).json({ success: false, message: "Invalid token" });
   }
 });
 

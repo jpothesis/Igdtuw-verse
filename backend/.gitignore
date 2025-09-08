@@ -24,4 +24,10 @@ dist-ssr
 *.sw?
 
 # VS Code workspace file
-IGDTUWverse.code-workspace.env
+IGDTUWverse.code-workspace
+.env
+
+.env
+.DS_Store
+*.code-workspace
+
