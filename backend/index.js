@@ -14,10 +14,7 @@ const app = express();
 
 // ================== MIDDLEWARE ==================
 app.use(express.json());
-app.use(cors({
-  origin: ["http://localhost:5173", "https://igdtuw-verse.netlify.app/"], // frontend URL
-  credentials: true
-}));
+app.use(cors());
 app.use(cookieParser());
 
 // ================== ROUTES ==================
