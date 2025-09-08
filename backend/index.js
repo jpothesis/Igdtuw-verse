@@ -15,7 +15,7 @@ const app = express();
 // ================== MIDDLEWARE ==================
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // frontend URL
+  origin: ["http://localhost:5173", "https://igdtuw-verse.vercel.app"], // frontend URL
   credentials: true
 }));
 app.use(cookieParser());
