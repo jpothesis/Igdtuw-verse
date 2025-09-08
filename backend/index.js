@@ -15,7 +15,7 @@ const app = express();
 // ================== MIDDLEWARE ==================
 app.use(express.json());
 app.use(cors({
-  origin: "https://igdtuw-verse.netlify.app/", // frontend domain
+  origin: "https://igdtuw-verse.netlify.app", // frontend domain
   credentials: true, // if you send cookies/session
 }));
 app.use(cookieParser());
