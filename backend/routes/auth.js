@@ -5,7 +5,7 @@ const User = require("../models/users");
 
 const router = express.Router();
 
-// Helper to generate tokens
+// Helper: Generate JWT Tokens
 const generateTokens = (user) => {
   const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     expiresIn: "15m",
@@ -48,7 +48,7 @@ router.post("/register", async (req, res) => {
 
     return res.status(201).json({ success: true, message: "User registered successfully!" });
   } catch (err) {
-    console.error("🔥 REGISTER ERROR:", err);  // Detailed error log
+    console.error("🔥 REGISTER ERROR:", err);
     return res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
@@ -76,7 +76,7 @@ router.post("/login", async (req, res) => {
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+      secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
@@ -136,17 +136,18 @@ router.post("/logout", (req, res) => {
   }
 });
 
-// ================== PROTECTED ROUTE - GET USER INFO ==================
+// ================== PROTECTED USER INFO ==================
 router.get("/me", async (req, res) => {
   try {
     const token = req.header("Authorization")?.split(" ")[1];
+
     if (!token) {
       return res.status(401).json({ success: false, message: "No token provided" });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id).select("-password");
 
+    const user = await User.findById(decoded.id).select("-password");
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }
