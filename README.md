@@ -1,12 +1,36 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🎓 IGDTUW_Verse  
 
-Currently, two official plugins are available:
+Hey IGDTUW fam! 🌟  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+We’re super hyped to launch **IGDTUW_Verse** – your all-in-one campus buddy! 🎓  
+Whether you’re a freshie or a final-year pro, this portal has everything to make campus life smoother, smarter & way more fun.  
 
-## Expanding the ESLint configuration
+👉 **Explore now:** [IGDTUW_Verse Website](https://igdtuw-verse.netlify.app/)  
+💬 **Join our WhatsApp group:** [Click here](https://chat.whatsapp.com/JxgIs3sv9LbBFvYRgIvEaK?mode=ems_copy_c)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features  
+
+- **Academics Hub 📚** – sem-wise notes, PYQs & books  
+- **GPA Calculator 🎯** – plan, track & slay grades  
+- **Societies & Clubs 🤝** – explore, join & vibe with communities  
+- **Timetable View 🗓️** – no more missing classes/exams  
+- **ERP Login 💻** – results & attendance in one click  
+- **Hackathons & Events 🚀** – stay updated & never miss the action  
+
+…and more cool features dropping soon 🌈  
+
+---
+
+## 🌟 Our Vibe  
+
+So whether it’s *padhai, masti, events,* ya *hackathons*, IGDTUW life ka full package ab ek hi app mein! 💪✨  
+
+Let’s make this **our space, our vibe, our Verse!** 💫  
+
+---
+
+### 💡 Team IGDTUW_Verse
