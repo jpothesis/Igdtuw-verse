@@ -1,18 +1,20 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { OAuth2Client } = require("google-auth-library");
 const User = require("../models/users");
 
 const router = express.Router();
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Helper: Generate JWT Tokens
 const generateTokens = (user) => {
   const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: "15m",
+    expiresIn: "15m", // short-lived access token
   });
 
   const refreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: "30d",
+    expiresIn: "30d", // valid for 30 days
   });
 
   return { accessToken, refreshToken };
@@ -21,10 +23,15 @@ const generateTokens = (user) => {
 // ================== REGISTER ==================
 router.post("/register", async (req, res) => {
   try {
-    const { username, email, password, branch, semester, section } = req.body;
+    const { username, email, password } = req.body;
 
-    if (!username || !email || !password || !branch || !semester || !section) {
+    if (!username || !email || !password) {
       return res.status(400).json({ success: false, message: "All fields are required" });
+    }
+
+    // only allow gmail or igdtuw emails
+    if (!(email.endsWith("@gmail.com") || email.endsWith("@igdtuw.ac.in"))) {
+      return res.status(403).json({ success: false, message: "Only Gmail or IGDTUW email addresses are allowed" });
     }
 
     const existingUser = await User.findOne({ email });
@@ -38,10 +45,8 @@ router.post("/register", async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      branch,
-      semester,
-      section,
       role: "student",
+      authProvider: "local",
     });
 
     await newUser.save();
@@ -67,9 +72,64 @@ router.post("/login", async (req, res) => {
       return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password || "");
     if (!isMatch) {
       return res.status(400).json({ success: false, message: "Invalid credentials" });
+    }
+
+    const { accessToken, refreshToken } = generateTokens(user);
+
+    // cookie keeps user logged in for 30 days
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    });
+
+    return res.json({
+      success: true,
+      accessToken,
+      user: { id: user._id, username: user.username, email: user.email, role: user.role },
+    });
+  } catch (err) {
+    console.error("🔥 LOGIN ERROR:", err);
+    return res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
+// ================== GOOGLE LOGIN ==================
+router.post("/google-login", async (req, res) => {
+  try {
+    const { token } = req.body;
+    if (!token) {
+      return res.status(400).json({ success: false, message: "No Google token provided" });
+    }
+
+    // verify google id token
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const { email, name } = payload;
+
+    // only allow gmail or igdtuw emails
+    if (!(email.endsWith("@gmail.com") || email.endsWith("@igdtuw.ac.in"))) {
+      return res.status(403).json({ success: false, message: "Only Gmail or IGDTUW email addresses are allowed" });
+    }
+
+    let user = await User.findOne({ email });
+    if (!user) {
+      user = new User({
+        username: name,
+        email,
+        password: null,
+        role: "student",
+        authProvider: "google",
+      });
+      await user.save();
     }
 
     const { accessToken, refreshToken } = generateTokens(user);
@@ -78,24 +138,16 @@ router.post("/login", async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 30 * 24 * 60 * 60 * 1000,
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
     });
 
     return res.json({
       success: true,
       accessToken,
-      user: {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        branch: user.branch,
-        semester: user.semester,
-        section: user.section,
-        role: user.role,
-      },
+      user: { id: user._id, username: user.username, email: user.email, role: user.role },
     });
   } catch (err) {
-    console.error("🔥 LOGIN ERROR:", err);
+    console.error("🔥 GOOGLE LOGIN ERROR:", err);
     return res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
@@ -146,8 +198,8 @@ router.get("/me", async (req, res) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
     const user = await User.findById(decoded.id).select("-password");
+
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }
