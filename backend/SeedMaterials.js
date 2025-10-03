@@ -356,6 +356,15 @@ const seedData = [
       assignments: "https://drive.google.com/drive/folders/1t-AFZOdeSor4DE4AAkW6CSlsq6HU1iTg?usp=drive_link"
     }
   },
+  {
+    subject: "Electronic Workshop", 
+    resources: {
+      books: "https://drive.google.com/drive/folders/1kGF9avbUDcGOkmTDso8IjywRkZtV0MQz?usp=drive_link",
+      notes: "https://drive.google.com/drive/folders/17UhhgQmQ12v7TbQC0yfUTwI8_6zJvCCQ?usp=drive_link",
+      pyqs: "https://drive.google.com/drive/folders/17r3YPq2UPD14nTwomsa9RiAmmTobG6Jy?usp=drive_link",
+      assignments: "https://drive.google.com/drive/folders/16ANb8svTlsOGdFi2DxNdxQ87omgcHPPZ?usp=drive_link"
+    }
+  },
 ];
 
 const seedDB = async () => {
