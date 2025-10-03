@@ -357,7 +357,7 @@ const seedData = [
     }
   },
   {
-    subject: "Electronic Workshop", 
+    subject: "Electronics Workshop", 
     resources: {
       books: "https://drive.google.com/drive/folders/1kGF9avbUDcGOkmTDso8IjywRkZtV0MQz?usp=drive_link",
       notes: "https://drive.google.com/drive/folders/17UhhgQmQ12v7TbQC0yfUTwI8_6zJvCCQ?usp=drive_link",
