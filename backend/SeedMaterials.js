@@ -10,7 +10,7 @@ const seedData = [
     resources: {
       books: "https://drive.google.com/drive/folders/1-Y_nQjkGQlMn_zB2WRSJpIifRQAbkSF_?usp=sharing",
       notes: "https://drive.google.com/drive/folders/1_rNT7J5dXP4Es2NChZPwh0SV9DHNEQty?usp=sharing",
-      pyqs: "https://drive.google.com/drive/folders/1_rNT7J5dXP4Es2NChZPwh0SV9DHNEQty?usp=sharing",
+      pyqs: "https://drive.google.com/drive/folders/1CA_zxhP3O0F8T9PXToOsBaa73A-0YjFL?usp=drive_link",
       assignments: "https://drive.google.com/drive/folders/1WREpYdYLJVoygOTTH3JBczozsCbAdw08?usp=sharing"
     }
   },
@@ -363,6 +363,15 @@ const seedData = [
       notes: "https://drive.google.com/drive/folders/17UhhgQmQ12v7TbQC0yfUTwI8_6zJvCCQ?usp=drive_link",
       pyqs: "https://drive.google.com/drive/folders/17r3YPq2UPD14nTwomsa9RiAmmTobG6Jy?usp=drive_link",
       assignments: "https://drive.google.com/drive/folders/16ANb8svTlsOGdFi2DxNdxQ87omgcHPPZ?usp=drive_link"
+    }
+  },
+  {
+    subject: "Calculus 1", 
+    resources: {
+      books: "https://drive.google.com/drive/folders/1g4zlJ1h6M7QTO91Q_wK_7F9C-1x_QwZm?usp=drive_link",
+      notes: "https://drive.google.com/drive/folders/1_PUL_CF0NLt2gyY7bs7frvUIIpS9rU4i?usp=drive_link",
+      pyqs: "https://drive.google.com/drive/folders/1c4FWoGs5Ma0wTFnkiejjAZZ5LOIfUbqX?usp=drive_link",
+      assignments: "https://drive.google.com/drive/folders/1VUqLpsl60OpVBBNC0RpPbh9YoXYD681i?usp=drive_link"
     }
   },
 ];
