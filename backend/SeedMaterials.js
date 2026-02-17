@@ -626,6 +626,15 @@ const seedData = [
       assignments: "https://drive.google.com/drive/folders/1QWmdN45hKTcxGPde7P6tdruqUAPodSqF?usp=drive_link"
     }
   },
+  {
+    subject: "Soft Skills and Personality Development ", 
+    resources: {
+      books: "https://drive.google.com/drive/folders/1deNGwPwRUIP-LOMGj2NHXOCBJvugDDjN?usp=drive_link",
+      notes: "https://drive.google.com/drive/folders/1nDqgNBKX5FfBcIsfPZYvJRvMxfn-EXQk?usp=drive_link",
+      pyqs: "https://drive.google.com/drive/folders/1xR5V0zUNfOPL-CO_6cXtt1S1t8sbO9Wa?usp=drive_link",
+      assignments: "https://drive.google.com/drive/folders/1XdRj6q3IvYPyxWX1gaPM5RQe0WqI6fw-?usp=drive_link"
+    }
+  },
 ];
 
 const seedDB = async () => {
