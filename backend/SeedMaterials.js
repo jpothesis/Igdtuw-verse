@@ -627,7 +627,7 @@ const seedData = [
     }
   },
   {
-    subject: "Soft Skills and Personality Development ", 
+    subject: "Soft Skills and Personality Development", 
     resources: {
       books: "https://drive.google.com/drive/folders/1deNGwPwRUIP-LOMGj2NHXOCBJvugDDjN?usp=drive_link",
       notes: "https://drive.google.com/drive/folders/1nDqgNBKX5FfBcIsfPZYvJRvMxfn-EXQk?usp=drive_link",
